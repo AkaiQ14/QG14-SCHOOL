@@ -2004,8 +2004,15 @@ function QuestionModal({
   onScore: (points: number) => void;
   onClose: () => void;
 }) {
+  const [doublePartIndex, setDoublePartIndex] = useState(0);
+  const [choicesVisible, setChoicesVisible] = useState(false);
   const category = CATEGORIES.find((item) => item.name === question.category);
   const isHard = current.mode === "hard";
+
+  useEffect(() => {
+    setDoublePartIndex(0);
+    setChoicesVisible(false);
+  }, [question.id, current.mode]);
   const shownQuestion = isHard ? question.hardQuestion ?? question.question : question.question;
   const shownAnswer = isHard ? question.hardAnswer ?? question.answer : question.answer;
   const shownHint = isHard ? question.hardHint ?? question.hint : question.hint;
@@ -2068,26 +2075,39 @@ function QuestionModal({
               {current.doubleApplied && <div className="double-banner">×2 مفعّل — النقاط الصحيحة مضاعفة</div>}
 
               {question.type === "double" ? (
-                <div className="double-questions">
-                  <span className="section-kicker">سؤالين سهلين • نقطتان لكل إجابة</span>
-                  {question.parts?.map((part, index) => (
-                    <article key={part.question}>
-                      <span>{index + 1}</span>
-                      <h2>{part.question}</h2>
-                      {current.answerShown && <p>{part.answer}</p>}
+                <div className="double-questions double-questions-sequential">
+                  <span className="section-kicker">
+                    سؤالين سهلين • السؤال {doublePartIndex + 1} من {question.parts?.length ?? 2}
+                  </span>
+                  {question.parts?.[doublePartIndex] && (
+                    <article key={question.parts[doublePartIndex].question}>
+                      <span>{doublePartIndex + 1}</span>
+                      <h2>{question.parts[doublePartIndex].question}</h2>
+                      {current.answerShown && <p>{question.parts[doublePartIndex].answer}</p>}
                     </article>
-                  ))}
+                  )}
                 </div>
               ) : (
                 <>
                   <span className="section-kicker">{isHard ? "ركّز… لا توجد خيارات" : "السؤال"}</span>
                   <h2 className="question-text">{shownQuestion}</h2>
                   {!isHard && question.choices && (
-                    <div className="choice-list">
-                      {question.choices.map((choice, index) => (
-                        <div key={choice}><span>{String.fromCharCode(65 + index)}</span>{choice}</div>
-                      ))}
-                    </div>
+                    <>
+                      <button
+                        type="button"
+                        className="button button-ghost choices-toggle-button"
+                        onClick={() => setChoicesVisible((visible) => !visible)}
+                      >
+                        {choicesVisible ? "إخفاء الخيارات" : "عرض الخيارات"}
+                      </button>
+                      {choicesVisible && (
+                        <div className="choice-list">
+                          {question.choices.map((choice, index) => (
+                            <div key={choice}><span>{String.fromCharCode(65 + index)}</span>{choice}</div>
+                          ))}
+                        </div>
+                      )}
+                    </>
                   )}
                   {current.hintVisible && shownHint && (
                     <div className="hint-box"><span>師</span><p><strong>تلميح السينسي</strong>{shownHint}</p></div>
@@ -2173,11 +2193,24 @@ function QuestionModal({
               </button>
               <div className="result-buttons">
                 {question.type === "double" ? (
-                  <>
-                    <button className="result wrong" onClick={() => onScore(0)}>0 صحيحة</button>
-                    <button className="result partial" onClick={() => onScore(2)}>واحدة صحيحة +{2 * scoreMultiplier}</button>
-                    <button className="result correct" onClick={() => onScore(4)}>اثنتان صحيحتان +{4 * scoreMultiplier}</button>
-                  </>
+                  doublePartIndex === 0 ? (
+                    <button
+                      type="button"
+                      className="button button-primary double-next-button"
+                      onClick={() => {
+                        if (current.answerShown) onReveal();
+                        setDoublePartIndex(1);
+                      }}
+                    >
+                      التالي
+                    </button>
+                  ) : (
+                    <>
+                      <button className="result wrong" onClick={() => onScore(0)}>0 صحيحة</button>
+                      <button className="result partial" onClick={() => onScore(2)}>واحدة صحيحة +{2 * scoreMultiplier}</button>
+                      <button className="result correct" onClick={() => onScore(4)}>اثنتان صحيحتان +{4 * scoreMultiplier}</button>
+                    </>
+                  )
                 ) : (
                   <>
                     <button className="result wrong" onClick={() => onScore(isHard ? -2 : 0)}>

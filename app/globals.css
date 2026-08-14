@@ -9388,3 +9388,27 @@ body {
     flex: 1 1 115px;
   }
 }
+
+/* Sequential double-question flow + hidden choices until requested */
+.double-questions.double-questions-sequential {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.double-questions.double-questions-sequential article {
+  width: 100%;
+  min-height: 190px;
+}
+
+.choices-toggle-button {
+  display: flex;
+  min-width: 155px;
+  margin: 22px auto 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.double-next-button {
+  min-width: 130px;
+}
