@@ -1,0 +1,14 @@
+.openai
+.wrangler
+.sites-runtime
+build
+db
+dist
+drizzle
+examples
+node_modules
+outputs
+scripts
+tests
+vite.config.ts
+worker
