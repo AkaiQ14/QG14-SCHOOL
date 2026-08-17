@@ -11732,3 +11732,222 @@ body {
     font-size: 0.40rem;
   }
 }
+
+/* ===== Stable SVG category wheel (final override) ===== */
+.category-page .category-wheel-panel {
+  display: flex;
+  min-width: 320px;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 12px;
+  border: 1px solid rgba(255, 211, 104, 0.28);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 18% 10%, rgba(255, 210, 94, 0.08), transparent 35%),
+    linear-gradient(150deg, rgba(91, 9, 32, 0.86), rgba(36, 2, 13, 0.92));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 12px 26px rgba(26, 0, 8, 0.18);
+}
+
+.category-page .category-wheel-button {
+  position: relative;
+  display: grid;
+  width: 154px;
+  height: 154px;
+  flex: 0 0 154px;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  filter: drop-shadow(0 10px 16px rgba(19, 0, 6, 0.24));
+}
+
+.category-page .category-wheel-button:disabled {
+  opacity: 1;
+}
+
+.category-page .category-wheel-button:focus-visible {
+  outline: 3px solid rgba(255, 218, 126, 0.62);
+  outline-offset: 4px;
+}
+
+.category-page .category-wheel-svg {
+  display: block;
+  width: 150px;
+  height: 150px;
+  overflow: visible;
+  border-radius: 50%;
+  border: 2px solid #f0c45b;
+  background: #310513;
+  box-shadow:
+    inset 0 0 0 3px rgba(64, 2, 20, 0.48),
+    0 0 0 1px rgba(255, 233, 175, 0.16);
+  transform-origin: 50% 50%;
+  transition: transform 2000ms cubic-bezier(0.12, 0.72, 0.13, 1);
+}
+
+.category-page .category-wheel-label {
+  fill: #fff8ea;
+  stroke: rgba(41, 2, 14, 0.72);
+  stroke-width: 1.7px;
+  paint-order: stroke fill;
+  font-family: "Cairo", "Hanka Arabic Fallback", Tahoma, sans-serif;
+  font-size: 9.2px;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.category-page .category-wheel-label.multi-line {
+  font-size: 8.4px;
+}
+
+.category-page .category-wheel-label.joker {
+  fill: #fff0a4;
+  stroke: rgba(62, 28, 0, 0.85);
+  font-size: 10.4px;
+  font-weight: 1000;
+}
+
+.category-page .category-wheel-hub {
+  fill: #4a071b;
+  stroke: #f1c45c;
+  stroke-width: 2.2;
+}
+
+.category-page .category-wheel-hub-inner {
+  fill: #710d30;
+  stroke: rgba(255, 238, 188, 0.34);
+  stroke-width: 1;
+}
+
+.category-page .category-wheel-hub-text {
+  fill: #ffd970;
+  stroke: rgba(44, 3, 13, 0.7);
+  stroke-width: 1.2px;
+  paint-order: stroke fill;
+  font-family: "Cairo", "Hanka Arabic Fallback", Tahoma, sans-serif;
+  font-size: 8px;
+  font-weight: 1000;
+}
+
+.category-page .category-wheel-pointer {
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  z-index: 4;
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(255, 239, 189, 0.55);
+  border-radius: 7px 7px 12px 12px;
+  background: linear-gradient(180deg, #ffe59a, #e6ad33);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform: translateX(-50%);
+  box-shadow: 0 5px 10px rgba(24, 0, 7, 0.3);
+}
+
+.category-page .category-wheel-copy {
+  display: flex;
+  width: 132px;
+  min-width: 0;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.category-page .category-wheel-copy > span {
+  color: #efc85f;
+  font-size: 0.5rem;
+  font-weight: 900;
+}
+
+.category-page .category-wheel-copy strong {
+  min-height: 1.4em;
+  color: #fff8e7;
+  font-size: 0.8rem;
+  font-weight: 1000;
+  line-height: 1.35;
+}
+
+.category-page .category-wheel-copy small {
+  color: #c9aaa4;
+  font-size: 0.43rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.category-page .category-wheel-button:hover:not(:disabled) .category-wheel-svg {
+  border-color: #ffdc7a;
+  box-shadow:
+    inset 0 0 0 3px rgba(64, 2, 20, 0.48),
+    0 0 0 1px rgba(255, 233, 175, 0.2),
+    0 0 18px rgba(239, 184, 75, 0.11);
+}
+
+/* Slightly larger lifelines on the player-name setup page. */
+.setup-refined .replacement-aid-grid {
+  gap: 7px;
+}
+
+.setup-refined .replacement-aid-grid .aid-choice {
+  min-height: 90px;
+  gap: 6px;
+  padding: 8px 6px;
+  border-radius: 16px;
+}
+
+.setup-refined .replacement-aid-grid .aid-choice > .aid-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+}
+
+.setup-refined .replacement-aid-grid .aid-choice > span strong {
+  font-size: 0.62rem;
+  line-height: 1.3;
+}
+
+@media (max-width: 1100px) {
+  .category-page .category-wheel-panel {
+    min-width: 292px;
+    gap: 9px;
+    padding: 8px 10px;
+  }
+
+  .category-page .category-wheel-button {
+    width: 140px;
+    height: 140px;
+    flex-basis: 140px;
+  }
+
+  .category-page .category-wheel-svg {
+    width: 136px;
+    height: 136px;
+  }
+
+  .category-page .category-wheel-copy {
+    width: 120px;
+  }
+}
+
+@media (max-width: 700px) {
+  .category-page .category-wheel-panel {
+    width: 100%;
+    min-width: 0;
+    justify-content: center;
+  }
+
+  .category-page .category-wheel-button {
+    width: 132px;
+    height: 132px;
+    flex-basis: 132px;
+  }
+
+  .category-page .category-wheel-svg {
+    width: 128px;
+    height: 128px;
+  }
+
+  .setup-refined .replacement-aid-grid .aid-choice {
+    min-height: 86px;
+  }
+}

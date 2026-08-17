@@ -218,6 +218,38 @@ const CATEGORY_ROULETTE_OPTIONS = [
 
 const CATEGORY_ROULETTE_SLICE = 360 / CATEGORY_ROULETTE_OPTIONS.length;
 
+const CATEGORY_ROULETTE_COLORS = [
+  "#377fb7",
+  "#4d9c69",
+  "#c15f89",
+  "#5f72b7",
+  "#737980",
+  "#ba8b21",
+] as const;
+
+function roulettePoint(angle: number, radius: number) {
+  const radians = (angle * Math.PI) / 180;
+  return {
+    x: 80 + radius * Math.cos(radians),
+    y: 80 + radius * Math.sin(radians),
+  };
+}
+
+function rouletteSectorPath(index: number) {
+  const startAngle = -90 + index * CATEGORY_ROULETTE_SLICE;
+  const endAngle = startAngle + CATEGORY_ROULETTE_SLICE;
+  const start = roulettePoint(startAngle, 72);
+  const end = roulettePoint(endAngle, 72);
+  return `M 80 80 L ${start.x.toFixed(3)} ${start.y.toFixed(3)} A 72 72 0 0 1 ${end.x.toFixed(3)} ${end.y.toFixed(3)} Z`;
+}
+
+function rouletteLabelLines(label: (typeof CATEGORY_ROULETTE_OPTIONS)[number]) {
+  if (label === "كرة قدم") return ["كرة", "قدم"];
+  if (label === "معلومات عامة") return ["معلومات", "عامة"];
+  if (label === "أفلام ومسلسلات") return ["أفلام", "ومسلسلات"];
+  return [label];
+}
+
 const emptyPlayer = (avatar: string): Player => ({
   name: "",
   avatar,
@@ -1886,48 +1918,68 @@ function CategoriesScreen({
               <h1>اختر التصنيف ورقم السؤال</h1>
             </div>
             <div className="category-heading-actions">
-              <section className="category-roulette-panel" aria-label="روليت التصنيفات">
+              <section className="category-wheel-panel" aria-label="روليت التصنيفات">
                 <button
                   type="button"
-                  className={cn("category-roulette", rouletteSpinning && "is-spinning")}
+                  className={cn("category-wheel-button", rouletteSpinning && "is-spinning")}
                   onClick={spinCategoryRoulette}
                   disabled={rouletteSpinning}
                   aria-label={rouletteSpinning ? "العجلة تدور" : "لف روليت التصنيفات"}
                 >
-                  <span className="category-roulette-pointer" aria-hidden="true" />
-                  <span
-                    className="category-roulette-face"
+                  <span className="category-wheel-pointer" aria-hidden="true" />
+                  <svg
+                    className="category-wheel-svg"
+                    viewBox="0 0 160 160"
                     style={{ transform: `rotate(${rouletteRotation}deg)` }}
                     aria-hidden="true"
                   >
                     {CATEGORY_ROULETTE_OPTIONS.map((option, index) => {
-                      const angle = (index + 0.5) * CATEGORY_ROULETTE_SLICE;
+                      const centerAngle = -90 + (index + 0.5) * CATEGORY_ROULETTE_SLICE;
+                      const labelPoint = roulettePoint(centerAngle, 49);
+                      const labelRotation = centerAngle + 90;
+                      const lines = rouletteLabelLines(option);
+                      const isLong = lines.length > 1;
                       return (
-                        <span
-                          className={cn(
-                            "category-roulette-label-orbit",
-                            option === "جوكر" && "joker",
-                            option.length > 7 && "long-label",
-                          )}
-                          key={option + "-" + index}
-                          style={{ transform: `rotate(${angle}deg)` }}
-                        >
-                          <span
-                            className="category-roulette-label-text"
-                            style={{ transform: `translate(-50%, -54px) rotate(${-angle}deg)` }}
+                        <g key={option}>
+                          <path
+                            d={rouletteSectorPath(index)}
+                            fill={CATEGORY_ROULETTE_COLORS[index]}
+                            stroke="rgba(255,235,184,0.72)"
+                            strokeWidth="1.35"
+                          />
+                          <text
+                            x={labelPoint.x}
+                            y={labelPoint.y}
+                            transform={`rotate(${labelRotation} ${labelPoint.x} ${labelPoint.y})`}
+                            className={cn(
+                              "category-wheel-label",
+                              option === "جوكر" && "joker",
+                              isLong && "multi-line",
+                            )}
+                            textAnchor="middle"
                           >
-                            {option}
-                          </span>
-                        </span>
+                            {lines.map((line, lineIndex) => (
+                              <tspan
+                                key={line}
+                                x={labelPoint.x}
+                                dy={lineIndex === 0 ? (lines.length > 1 ? -3.8 : 2.6) : 10}
+                              >
+                                {line}
+                              </tspan>
+                            ))}
+                          </text>
+                        </g>
                       );
                     })}
-                  </span>
-                  <span className="category-roulette-center" aria-hidden="true">QG14</span>
+                    <circle cx="80" cy="80" r="23" className="category-wheel-hub" />
+                    <circle cx="80" cy="80" r="18" className="category-wheel-hub-inner" />
+                    <text x="80" y="83" className="category-wheel-hub-text" textAnchor="middle">QG14</text>
+                  </svg>
                 </button>
-                <div className="category-roulette-copy" aria-live="polite">
-                  <span className="section-kicker">الروليت</span>
+                <div className="category-wheel-copy" aria-live="polite">
+                  <span>الروليت</span>
                   <strong>{rouletteSpinning ? "تدور..." : rouletteResult ? rouletteResult : "اضغط للدوران"}</strong>
-                  <small>اختيار عشوائي سريع للتصنيفات</small>
+                  <small>التصنيف الذي يقف عند المؤشر هو الاختيار</small>
                 </div>
               </section>
 
