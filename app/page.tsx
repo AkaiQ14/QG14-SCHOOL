@@ -1914,7 +1914,7 @@ function CategoriesScreen({
                         >
                           <span
                             className="category-roulette-label-text"
-                            style={{ transform: `translateY(-42px) rotate(${-angle}deg)` }}
+                            style={{ transform: `translateY(-48px) rotate(${-angle}deg)` }}
                           >
                             {option}
                           </span>
@@ -1925,8 +1925,9 @@ function CategoriesScreen({
                   <span className="category-roulette-center" aria-hidden="true">QG14</span>
                 </button>
                 <div className="category-roulette-copy" aria-live="polite">
-                  <span>الروليت</span>
+                  <span className="section-kicker">الروليت</span>
                   <strong>{rouletteSpinning ? "تدور..." : rouletteResult ? rouletteResult : "اضغط للدوران"}</strong>
+                  <small>اختيار عشوائي سريع للتصنيفات</small>
                 </div>
               </section>
 
@@ -1934,6 +1935,14 @@ function CategoriesScreen({
                 <span>الدور الآن</span>
                 <strong>{game.players[game.activePlayer].name}</strong>
               </div>
+              <a
+                className="category-header-link"
+                href="/answers?section=categories"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                ملف الإجابات
+              </a>
               {game.usedSlots.length >= categoryTarget && (
                 <button className="category-inline-next" onClick={onNext}>
                   الانتقال للأسئلة السريعة
@@ -1979,7 +1988,6 @@ function CategoriesScreen({
           </div>
         </section>
       </div>
-      <AnswersFileLink section="categories" />
     </section>
   );
 }
