@@ -141,9 +141,9 @@ const STORAGE_GAME = "madrasa-al-hanka-game-v2";
 const STORAGE_QUESTION_HISTORY = "madrasa-al-hanka-question-history-v1";
 const QUESTION_BANK_URL = "/data/questions.json";
 const CATEGORY_QUESTION_TARGET = 16;
-const CATEGORY_SLOT_COUNT = 4;
+const CATEGORY_SLOT_COUNT = 5;
 const RAPID_QUESTION_TARGET = 12;
-const CATEGORY_QUESTION_TYPES: QuestionType[] = ["normal", "double", "hard", "dual"];
+const CATEGORY_QUESTION_TYPES: QuestionType[] = ["double", "normal", "normal", "hard", "dual"];
 
 const AVATARS = [
   { id: "naruto", name: "ناروتو", src: "/avatars/avatar-naruto.jpg" },
@@ -318,19 +318,30 @@ function buildCategoryDeck(questions: Question[], history: string[]) {
 
   CATEGORIES.forEach((category) => {
     const selected: string[] = [];
+    const selectedIds = new Set<string>();
+
     CATEGORY_QUESTION_TYPES.forEach((type) => {
       const pool = questions.filter(
         (question) => question.category === category.name && question.type === type,
       );
       if (!pool.length) return;
-      let available = pool.filter((question) => !retainedHistory.includes(question.id));
+
+      let available = pool.filter(
+        (question) => !retainedHistory.includes(question.id) && !selectedIds.has(question.id),
+      );
+
       if (!available.length) {
         const poolIds = new Set(pool.map((question) => question.id));
         retainedHistory = retainedHistory.filter((id) => !poolIds.has(id));
-        available = pool;
+        available = pool.filter((question) => !selectedIds.has(question.id));
       }
-      selected.push(shuffleList(available)[0].id);
+
+      if (!available.length) return;
+      const picked = shuffleList(available)[0];
+      selected.push(picked.id);
+      selectedIds.add(picked.id);
     });
+
     deck[category.name] = shuffleList(selected);
   });
 
@@ -359,7 +370,7 @@ function questionMeta(question: Question) {
   if (question.type === "easy") return { label: "سهل", points: "2", tone: "easy" };
   if (question.type === "normal") return { label: "عادي", points: "2", tone: "normal" };
   if (question.type === "hard") return { label: "صعب", points: "4", tone: "hard" };
-  if (question.type === "dual") return { label: "عادي أو صعب", points: "2 / 4", tone: "dual" };
+  if (question.type === "dual") return { label: "صعب / عادي", points: "2 / 4", tone: "dual" };
   return { label: "سؤالين سهلين", points: "2 + 2", tone: "double" };
 }
 
@@ -374,7 +385,7 @@ function questionRevealMeta(question: Question) {
     return { title: "سؤال صعب", symbol: "ص", description: "+4 للصحيح و−2 للخطأ", tone: "hard" };
   }
   if (question.type === "dual") {
-    return { title: "عادي أو صعب", symbol: "↔", description: "اختر النمط بعد الكشف", tone: "dual" };
+    return { title: "سؤال صعب / عادي", symbol: "↔", description: "اختر النمط بعد الكشف", tone: "dual" };
   }
   return { title: "سؤالين سهلين", symbol: "2", description: "نقطتان لكل إجابة صحيحة", tone: "double" };
 }
@@ -1531,6 +1542,11 @@ function SetupScreen({
     <section className="setup-screen setup-refined page">
       <PageTop onHome={onBack} />
 
+      <header className="setup-page-title">
+        <span>إعداد المباراة</span>
+        <h1>أسماء اللاعبين</h1>
+      </header>
+
       <section className="audience-aid-builder">
         <div className="audience-aid-intro">
           <AidIcon aid={{ key: "custom", symbol: "✦" }} />
@@ -2088,34 +2104,37 @@ function QuestionModal({
                   )}
                 </div>
               ) : (
-                <>
-                  <span className="section-kicker">{isHard ? "ركّز… لا توجد خيارات" : "السؤال"}</span>
-                  <h2 className="question-text">{shownQuestion}</h2>
-                  {!isHard && question.choices && (
-                    <>
-                      <button
-                        type="button"
-                        className="button button-ghost choices-toggle-button"
-                        onClick={() => setChoicesVisible((visible) => !visible)}
-                      >
-                        {choicesVisible ? "إخفاء الخيارات" : "عرض الخيارات"}
-                      </button>
-                      {choicesVisible && (
-                        <div className="choice-list">
-                          {question.choices.map((choice, index) => (
-                            <div key={choice}><span>{String.fromCharCode(65 + index)}</span>{choice}</div>
-                          ))}
-                        </div>
-                      )}
-                    </>
-                  )}
-                  {current.hintVisible && shownHint && (
-                    <div className="hint-box"><span>師</span><p><strong>تلميح السينسي</strong>{shownHint}</p></div>
-                  )}
-                  {current.answerShown && (
-                    <div className="answer-box"><small>الإجابة</small><strong>{shownAnswer}</strong></div>
-                  )}
-                </>
+                <div className="single-question-shell">
+                  <span className="section-kicker">{isHard ? "سؤال صعب • بلا خيارات" : "السؤال"}</span>
+                  <article className="single-question-card">
+                    <span className="single-question-mark">؟</span>
+                    <h2 className="question-text">{shownQuestion}</h2>
+                    {!isHard && question.choices && (
+                      <div className="single-question-choices">
+                        <button
+                          type="button"
+                          className="button button-ghost choices-toggle-button"
+                          onClick={() => setChoicesVisible((visible) => !visible)}
+                        >
+                          {choicesVisible ? "إخفاء الخيارات" : "عرض الخيارات"}
+                        </button>
+                        {choicesVisible && (
+                          <div className="choice-list">
+                            {question.choices.map((choice, index) => (
+                              <div key={choice}><span>{String.fromCharCode(65 + index)}</span>{choice}</div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                    {current.hintVisible && shownHint && (
+                      <div className="hint-box"><span>師</span><p><strong>تلميح السينسي</strong>{shownHint}</p></div>
+                    )}
+                    {current.answerShown && (
+                      <div className="answer-box"><small>الإجابة</small><strong>{shownAnswer}</strong></div>
+                    )}
+                  </article>
+                </div>
               )}
             </div>
 
