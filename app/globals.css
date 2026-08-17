@@ -9843,3 +9843,324 @@ body {
     padding-inline: 14px;
   }
 }
+
+/* Final refinement: clearer avatars + compact side-by-side question lifelines */
+
+/* Keep player avatars easy to recognize across the game without making rows oversized. */
+.avatar.avatar-image {
+  width: 50px;
+  height: 50px;
+  border-width: 2px;
+}
+
+.game-screen .avatar.avatar-image {
+  width: 54px;
+  height: 54px;
+  flex-basis: 54px;
+  border-radius: 50%;
+}
+
+.setup-refined .player-identity-row {
+  grid-template-columns: minmax(0, 1fr) 96px;
+  gap: 10px;
+}
+
+.setup-refined .avatar-picker-trigger {
+  min-height: 78px;
+  border-radius: 18px;
+}
+
+.setup-refined .avatar-picker-trigger img {
+  width: 64px;
+  height: 64px;
+}
+
+.avatar-modal-option img {
+  width: 112px;
+  height: 112px;
+}
+
+/* A dedicated, compact lifeline panel inside the category question modal. */
+.question-modal .modal-aid-bar {
+  width: min(748px, calc(100% - 32px));
+  margin: 0 auto 14px;
+  padding: 10px;
+  border: 1px solid rgba(255, 211, 106, 0.12);
+  border-radius: 24px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.035), rgba(34, 1, 12, 0.46));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.025);
+}
+
+.question-modal .modal-aid-heading {
+  display: flex;
+  min-height: 24px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 7px;
+}
+
+.question-modal .modal-aid-heading span {
+  color: #dfc17b;
+  font-size: 0.54rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+}
+
+.question-modal .question-player-aids {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.question-modal .question-player-aid-card {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 96px minmax(0, 1fr);
+  align-items: stretch;
+  gap: 7px;
+  padding: 8px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--player-aid-color) 20%, rgba(255,255,255,.04));
+  border-radius: 19px;
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--player-aid-color) 5%, rgba(255,255,255,.015)), rgba(23, 0, 8, 0.46));
+}
+
+.question-modal .question-player-aid-card::before {
+  position: absolute;
+  top: 9px;
+  bottom: 9px;
+  right: 0;
+  width: 3px;
+  border-radius: 999px;
+  background: var(--player-aid-color);
+  content: "";
+  opacity: 0.55;
+}
+
+.question-modal .question-player-aid-card.red::before {
+  right: auto;
+  left: 0;
+}
+
+.question-modal .question-player-aid-card.is-current {
+  border-color: color-mix(in srgb, var(--player-aid-color) 45%, rgba(255,255,255,.05));
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--player-aid-color) 10%, transparent),
+    0 7px 18px rgba(13, 0, 5, 0.13);
+}
+
+.question-modal .question-player-aid-card > header {
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 4px 5px;
+  border: 0;
+  border-left: 1px solid rgba(255,255,255,0.055);
+  text-align: center;
+}
+
+.question-modal .question-player-aid-card.red > header {
+  border-right: 1px solid rgba(255,255,255,0.055);
+  border-left: 0;
+}
+
+.question-modal .question-player-aid-card > header .avatar.avatar-image {
+  width: 48px;
+  height: 48px;
+  flex-basis: 48px;
+  border-radius: 50%;
+}
+
+.question-modal .question-player-aid-card > header > div {
+  align-items: center;
+  gap: 1px;
+  text-align: center;
+}
+
+.question-modal .question-player-aid-card > header small {
+  font-size: 0.38rem;
+  line-height: 1.2;
+}
+
+.question-modal .question-player-aid-card > header strong {
+  overflow: hidden;
+  width: 100%;
+  max-width: 84px;
+  font-size: 0.63rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.question-modal .question-player-aid-list {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: center;
+  gap: 5px;
+}
+
+.question-modal .question-player-aid-list button {
+  min-width: 0;
+  min-height: 40px;
+  width: 100%;
+  gap: 5px;
+  padding: 5px 6px;
+  border-radius: 12px;
+}
+
+.question-modal .question-player-aid-list button .aid-icon {
+  width: 27px;
+  height: 27px;
+  flex-basis: 27px;
+  border-radius: 9px;
+}
+
+.question-modal .question-aid-label {
+  gap: 1px;
+}
+
+.question-modal .question-aid-label strong {
+  font-size: 0.53rem;
+}
+
+.question-modal .question-aid-label small {
+  font-size: 0.34rem;
+}
+
+.question-modal .question-player-aid-list > p {
+  grid-column: 1 / -1;
+  align-self: center;
+  justify-self: center;
+  font-size: 0.45rem;
+}
+
+@media (max-width: 720px) {
+  .avatar.avatar-image {
+    width: 48px;
+    height: 48px;
+  }
+
+  .game-screen .avatar.avatar-image {
+    width: 50px;
+    height: 50px;
+    flex-basis: 50px;
+  }
+
+  .question-modal .modal-aid-bar {
+    width: min(100% - 20px, 680px);
+    border-radius: 21px;
+  }
+
+  /* Keep both players beside each other on tablets and normal phones. */
+  .question-modal .question-player-aids {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .question-modal .question-player-aid-card {
+    grid-template-columns: 1fr;
+    gap: 5px;
+    padding: 7px;
+    border-radius: 17px;
+  }
+
+  .question-modal .question-player-aid-card > header,
+  .question-modal .question-player-aid-card.red > header {
+    min-height: 58px;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 6px;
+    padding: 2px 3px 6px;
+    border-right: 0;
+    border-left: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.055);
+    text-align: right;
+  }
+
+  .question-modal .question-player-aid-card > header > div {
+    align-items: flex-start;
+    text-align: right;
+  }
+
+  .question-modal .question-player-aid-card > header .avatar.avatar-image {
+    width: 44px;
+    height: 44px;
+    flex-basis: 44px;
+  }
+
+  .question-modal .question-player-aid-list {
+    grid-template-columns: 1fr;
+  }
+
+  .question-modal .question-player-aid-list button {
+    min-height: 38px;
+  }
+}
+
+@media (max-width: 500px) {
+  .setup-refined .player-identity-row {
+    grid-template-columns: minmax(0, 1fr) 88px;
+  }
+
+  .setup-refined .avatar-picker-trigger img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .avatar-modal-option img {
+    width: 94px;
+    height: 94px;
+  }
+
+  .question-modal .modal-aid-bar {
+    width: calc(100% - 14px);
+    padding: 7px;
+    border-radius: 19px;
+  }
+
+  .question-modal .question-player-aids {
+    gap: 5px;
+  }
+
+  .question-modal .question-player-aid-card {
+    padding: 6px;
+    border-radius: 15px;
+  }
+
+  .question-modal .question-player-aid-card > header .avatar.avatar-image {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+  }
+
+  .question-modal .question-player-aid-card > header strong {
+    max-width: 92px;
+    font-size: 0.56rem;
+  }
+
+  .question-modal .question-player-aid-list button {
+    min-height: 36px;
+    padding: 4px 5px;
+  }
+
+  .question-modal .question-player-aid-list button .aid-icon {
+    width: 24px;
+    height: 24px;
+    flex-basis: 24px;
+  }
+
+  .question-modal .question-aid-label strong {
+    font-size: 0.48rem;
+  }
+
+  .question-modal .question-aid-label small {
+    display: none;
+  }
+}
