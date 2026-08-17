@@ -10789,3 +10789,398 @@ body {
     width: 62px;
   }
 }
+
+/* ===== Final official QG14 School identity + category viewport refinement ===== */
+
+/* The supplied vertical QG144 mark is the official site logo. */
+.brand-logo {
+  width: 54px;
+  height: 68px;
+  object-fit: contain;
+}
+
+.brand-small .brand-logo {
+  width: 42px;
+  height: 54px;
+}
+
+.home-logo-panel > img {
+  width: auto;
+  height: min(278px, 64vw);
+  max-width: 82%;
+  max-height: 88%;
+  object-fit: contain;
+}
+
+.pre-reveal-logo,
+.pre-reveal-compact .pre-reveal-logo {
+  width: 66px;
+  height: 88px;
+  object-fit: contain;
+}
+
+.answers-brand img {
+  width: 48px;
+  height: 64px;
+  object-fit: contain;
+}
+
+/* Cleaner compact roulette in the category heading. */
+.category-game-layout .category-roulette-panel {
+  min-width: 208px;
+  padding: 6px 8px;
+  gap: 7px;
+  border-color: rgba(245, 196, 76, 0.3);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 30% 50%, rgba(240, 188, 63, 0.08), transparent 48%),
+    linear-gradient(145deg, rgba(80, 7, 29, 0.7), rgba(28, 2, 11, 0.9));
+}
+
+.category-game-layout .category-roulette {
+  width: 122px;
+  height: 122px;
+  flex: 0 0 122px;
+}
+
+.category-game-layout .category-roulette-face {
+  inset: 4px;
+  border-width: 3px;
+  background: conic-gradient(
+    from 0deg,
+    #337da8 0deg 60deg,
+    #39885f 60deg 120deg,
+    #ad4c74 120deg 180deg,
+    #5968a8 180deg 240deg,
+    #77746d 240deg 300deg,
+    #a26e18 300deg 360deg
+  );
+  box-shadow:
+    inset 0 0 0 2px rgba(38, 2, 13, 0.42),
+    inset 0 0 20px rgba(0, 0, 0, 0.25),
+    0 7px 18px rgba(20, 0, 8, 0.24);
+}
+
+.category-game-layout .category-roulette-face::after {
+  background: repeating-conic-gradient(
+    from 0deg,
+    rgba(255, 229, 158, 0.72) 0deg 1deg,
+    transparent 1deg 60deg
+  );
+}
+
+.category-game-layout .category-roulette-label-orbit > span {
+  left: -29px;
+  top: -9px;
+  width: 58px;
+  min-height: 18px;
+  padding: 1px 2px;
+  color: #fffaf1;
+  font-size: 0.46rem;
+  font-weight: 950;
+  line-height: 1.13;
+  text-align: center;
+  text-wrap: balance;
+  white-space: normal;
+  text-shadow: 0 2px 5px rgba(20, 0, 7, 0.8);
+}
+
+.category-game-layout .category-roulette-label-orbit.long-label > span {
+  font-size: 0.39rem;
+  line-height: 1.12;
+}
+
+.category-game-layout .category-roulette-label-orbit.joker > span {
+  color: #fff0ad;
+  font-size: 0.5rem;
+}
+
+.category-game-layout .category-roulette-center {
+  width: 34px;
+  height: 34px;
+  border: 2px solid #f1c95e;
+  background: radial-gradient(circle at 50% 35%, #75193a, #30030f 72%);
+  color: #ffe29a;
+  font-size: 0.36rem;
+  letter-spacing: 0;
+}
+
+.category-game-layout .category-roulette-pointer {
+  top: -3px;
+  border-right-width: 8px;
+  border-left-width: 8px;
+  border-top-width: 16px;
+}
+
+.category-game-layout .category-roulette-copy {
+  width: 66px;
+  gap: 3px;
+}
+
+.category-game-layout .category-roulette-copy > span {
+  color: #d7b45f;
+  font-size: 0.45rem;
+}
+
+.category-game-layout .category-roulette-copy strong {
+  max-width: 66px;
+  color: #fff1c9;
+  font-size: 0.55rem;
+  line-height: 1.35;
+  text-align: center;
+  text-wrap: balance;
+}
+
+/* Desktop category page is locked to one viewport; the board flexes instead of making the body scroll. */
+@media (min-width: 901px) {
+  .category-page {
+    display: grid;
+    width: min(1720px, 100%);
+    height: 100svh;
+    min-height: 100svh;
+    max-height: 100svh;
+    grid-template-rows: auto auto auto minmax(0, 1fr);
+    gap: 5px;
+    overflow: hidden;
+    padding: 9px clamp(18px, 3vw, 44px);
+  }
+
+  .category-page .page-top {
+    min-height: 0;
+    padding-bottom: 5px;
+  }
+
+  .category-page .brand-small .brand-logo {
+    width: 36px;
+    height: 46px;
+  }
+
+  .category-page .stage-pill {
+    padding: 6px 11px;
+  }
+
+  .category-page .score-strip {
+    margin-top: 0;
+    padding: 5px;
+    gap: 7px;
+    border-radius: 18px;
+  }
+
+  .category-page .score-player {
+    min-height: 66px;
+    gap: 8px;
+    padding: 7px 10px !important;
+    border-radius: 14px;
+  }
+
+  .category-page .score-person {
+    gap: 8px;
+  }
+
+  .category-page .avatar {
+    width: 39px;
+    height: 39px;
+    border-radius: 12px;
+  }
+
+  .category-page .score-controls {
+    gap: 3px;
+    padding: 3px;
+    border-radius: 11px;
+  }
+
+  .category-page .score-controls button {
+    width: 27px;
+    height: 27px;
+    border-radius: 8px;
+  }
+
+  .category-page .score-controls span {
+    min-width: 34px;
+    font-size: 1.35rem;
+  }
+
+  .category-page .score-label {
+    padding: 7px 6px;
+    border-radius: 13px;
+  }
+
+  .category-page .progress-track {
+    margin: 0 auto 3px;
+  }
+
+  .category-page .game-layout {
+    width: min(1160px, 100%);
+    height: 100%;
+    min-height: 0;
+    margin: 0 auto;
+    align-items: stretch;
+  }
+
+  .category-page .category-board {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 9px;
+    border-radius: 20px;
+  }
+
+  .category-page .board-heading {
+    flex: 0 0 auto;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+
+  .category-page .board-heading h1 {
+    margin-top: 1px;
+    font-size: clamp(1.02rem, 1.7vw, 1.42rem);
+  }
+
+  .category-page .section-kicker {
+    font-size: 0.5rem;
+  }
+
+  .category-page .category-heading-actions {
+    gap: 6px;
+  }
+
+  .category-page .category-heading-actions .turn-callout {
+    min-width: 118px;
+    padding: 6px 9px;
+    border-radius: 12px;
+  }
+
+  .category-page .category-inline-next {
+    min-height: 44px;
+    padding: 7px 10px;
+  }
+
+  .category-page .category-columns-grid {
+    flex: 1 1 auto;
+    min-height: 0;
+    gap: 7px;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .category-page .category-stack {
+    height: 100%;
+    min-height: 0;
+    border-radius: 14px;
+  }
+
+  .category-page .category-stack-head {
+    min-height: 60px;
+    grid-template-columns: 29px minmax(0, 1fr);
+    gap: 1px 6px;
+    padding: 5px 7px;
+  }
+
+  .category-page .category-stack-icon {
+    width: 29px;
+    height: 29px;
+    border-radius: 9px;
+  }
+
+  .category-page .category-stack-head h2 {
+    font-size: 0.57rem;
+    line-height: 1.3;
+  }
+
+  .category-page .category-stack-head small {
+    font-size: 0.39rem;
+  }
+
+  .category-page .category-stack-numbers {
+    flex: 1 1 auto;
+    min-height: 0;
+    gap: 4px;
+    padding: 5px;
+  }
+
+  .category-page .category-number-button {
+    min-height: 0;
+    flex: 1 1 0;
+    border-radius: 9px;
+  }
+
+  .category-page .category-number-button strong {
+    font-size: clamp(1rem, 2.25vh, 1.22rem);
+  }
+}
+
+@media (max-width: 1100px) and (min-width: 901px) {
+  .category-game-layout .category-roulette-panel {
+    min-width: 190px;
+    padding: 5px 6px;
+    gap: 5px;
+  }
+
+  .category-game-layout .category-roulette {
+    width: 108px;
+    height: 108px;
+    flex-basis: 108px;
+  }
+
+  .category-game-layout .category-roulette-label-orbit > span {
+    left: -27px;
+    width: 54px;
+    font-size: 0.41rem;
+  }
+
+  .category-game-layout .category-roulette-label-orbit.long-label > span {
+    font-size: 0.355rem;
+  }
+
+  .category-game-layout .category-roulette-copy {
+    width: 62px;
+  }
+}
+
+@media (max-width: 900px) {
+  .category-game-layout .category-roulette-panel {
+    min-width: 194px;
+  }
+
+  .category-game-layout .category-roulette {
+    width: 112px;
+    height: 112px;
+    flex-basis: 112px;
+  }
+
+  .brand-logo {
+    width: 46px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 560px) {
+  .category-game-layout .category-roulette-panel {
+    min-width: 184px;
+    padding: 5px;
+  }
+
+  .category-game-layout .category-roulette {
+    width: 104px;
+    height: 104px;
+    flex-basis: 104px;
+  }
+
+  .category-game-layout .category-roulette-label-orbit > span {
+    left: -26px;
+    width: 52px;
+    font-size: 0.39rem;
+  }
+
+  .category-game-layout .category-roulette-label-orbit.long-label > span {
+    font-size: 0.34rem;
+  }
+
+  .answers-brand img {
+    width: 42px;
+    height: 56px;
+  }
+}

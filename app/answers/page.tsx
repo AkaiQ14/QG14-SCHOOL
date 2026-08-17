@@ -93,7 +93,7 @@ export default function AnswersPage() {
     <main className="answers-page">
       <header className="answers-page-header">
         <div className="answers-brand">
-          <img src="/qg14-logo.png" alt="" aria-hidden="true" />
+          <img src="/images/QG144.png" alt="" aria-hidden="true" />
           <div><small>مدرسة الحنكة</small><h1>ملف الإجابات</h1></div>
         </div>
         <button className="answers-close" onClick={() => window.close()} aria-label="إغلاق ملف الإجابات">×</button>

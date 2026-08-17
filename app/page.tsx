@@ -505,7 +505,7 @@ function CategoryIcon({ type }: { type: CategoryKey }) {
 function Brand({ small = false }: { small?: boolean }) {
   return (
     <div className={cn("brand", small && "brand-small")}>
-      <img className="brand-logo" src="/qg14-logo.png" alt="" aria-hidden="true" />
+      <img className="brand-logo" src="/images/QG144.png" alt="" aria-hidden="true" />
       <span>
         <strong>مدرسة الحنكة</strong>
         {!small && <small>المعرفة تحتاج جرأة</small>}
@@ -1480,7 +1480,7 @@ function HomeScreen({
         <section className="home-menu-card">
           <div className="home-menu-layout">
             <div className="home-logo-panel" aria-label="شعار مدرسة الحنكة">
-              <img src="/qg14-logo.png" alt="شعار مدرسة الحنكة" />
+              <img src="/images/QG144.png" alt="شعار مدرسة الحنكة" />
             </div>
 
             <div className="home-main-menu">
@@ -1865,7 +1865,7 @@ function CategoriesScreen({
   }
 
   return (
-    <section className="game-screen page wide-page">
+    <section className="game-screen category-page page wide-page">
       <PageTop onHome={onHome} />
       <ScoreStrip
         players={game.players}
@@ -1904,11 +1904,20 @@ function CategoriesScreen({
                       const angle = (index + 0.5) * CATEGORY_ROULETTE_SLICE;
                       return (
                         <span
-                          className={cn("category-roulette-label-orbit", option === "جوكر" && "joker")}
+                          className={cn(
+                            "category-roulette-label-orbit",
+                            option === "جوكر" && "joker",
+                            option.length > 7 && "long-label",
+                          )}
                           key={option + "-" + index}
                           style={{ transform: `rotate(${angle}deg)` }}
                         >
-                          <span style={{ transform: `translateY(-48px) rotate(${-angle}deg)` }}>{option}</span>
+                          <span
+                            className="category-roulette-label-text"
+                            style={{ transform: `translateY(-42px) rotate(${-angle}deg)` }}
+                          >
+                            {option}
+                          </span>
                         </span>
                       );
                     })}
@@ -2006,7 +2015,7 @@ function PreRevealModal({
         {!pending.doubleCommitted && !pending.stealCommitted && (
           <button className="icon-button" onClick={onClose} aria-label="العودة للوحة">×</button>
         )}
-        <img className="pre-reveal-logo" src="/qg14-logo.png" alt="" aria-hidden="true" />
+        <img className="pre-reveal-logo" src="/images/QG144.png" alt="" aria-hidden="true" />
         <div className="mystery-pick">
           <span>{category && <CategoryIcon type={category.className} />}</span>
           <div>
