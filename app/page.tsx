@@ -1914,7 +1914,7 @@ function CategoriesScreen({
                         >
                           <span
                             className="category-roulette-label-text"
-                            style={{ transform: `translateY(-48px) rotate(${-angle}deg)` }}
+                            style={{ transform: `translate(-50%, -54px) rotate(${-angle}deg)` }}
                           >
                             {option}
                           </span>

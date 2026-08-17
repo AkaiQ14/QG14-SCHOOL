@@ -11607,3 +11607,128 @@ body {
     font-size: 0.34rem;
   }
 }
+
+/* Roulette label visibility fix — labels orbit from the exact wheel center. */
+.category-page .category-roulette {
+  width: 150px;
+  height: 150px;
+  flex-basis: 150px;
+}
+
+.category-page .category-roulette-face {
+  overflow: hidden;
+  background:
+    repeating-conic-gradient(from 0deg, rgba(255, 232, 175, 0.42) 0deg 1deg, transparent 1deg 60deg),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.045) 0 25%, transparent 26% 100%),
+    conic-gradient(
+      from 0deg,
+      #397fb1 0deg 60deg,
+      #459862 60deg 120deg,
+      #c05b86 120deg 180deg,
+      #586fae 180deg 240deg,
+      #6f7479 240deg 300deg,
+      #b98a1f 300deg 360deg
+    );
+}
+
+.category-page .category-roulette-face::after {
+  inset: 20px;
+  border-color: rgba(255, 232, 171, 0.45);
+}
+
+.category-page .category-roulette-label-orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  width: 0;
+  height: 0;
+  transform-origin: 0 0;
+  z-index: 2;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.category-page .category-roulette-label-orbit > .category-roulette-label-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 68px;
+  min-height: 24px;
+  padding: 2px 3px;
+  align-items: center;
+  justify-content: center;
+  color: #fff8e8;
+  font-size: 0.58rem;
+  font-weight: 1000;
+  line-height: 1.12;
+  text-align: center;
+  white-space: normal;
+  text-wrap: balance;
+  text-shadow: 0 2px 5px rgba(18, 0, 6, 0.72), 0 0 2px rgba(18, 0, 6, 0.9);
+}
+
+.category-page .category-roulette-label-orbit.long-label > .category-roulette-label-text {
+  width: 76px;
+  font-size: 0.47rem;
+  line-height: 1.1;
+}
+
+.category-page .category-roulette-label-orbit.joker > .category-roulette-label-text {
+  color: #fff0a7;
+  font-size: 0.65rem;
+  text-shadow: 0 2px 6px rgba(49, 24, 0, 0.85), 0 0 7px rgba(255, 210, 86, 0.2);
+}
+
+.category-page .category-roulette-center {
+  width: 46px;
+  height: 46px;
+  border-width: 2px;
+  font-size: 0.48rem;
+}
+
+.category-page .category-roulette-pointer {
+  top: -8px;
+  border-right-width: 11px;
+  border-bottom-width: 21px;
+  border-left-width: 11px;
+}
+
+@media (max-width: 900px) {
+  .category-page .category-roulette {
+    width: 132px;
+    height: 132px;
+    flex-basis: 132px;
+  }
+
+  .category-page .category-roulette-label-orbit > .category-roulette-label-text {
+    width: 62px;
+    font-size: 0.52rem;
+    transform-origin: center;
+  }
+
+  .category-page .category-roulette-label-orbit.long-label > .category-roulette-label-text {
+    width: 68px;
+    font-size: 0.43rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .category-page .category-roulette {
+    width: 124px;
+    height: 124px;
+    flex-basis: 124px;
+  }
+
+  .category-page .category-roulette-label-orbit > .category-roulette-label-text {
+    width: 58px;
+    font-size: 0.48rem;
+  }
+
+  .category-page .category-roulette-label-orbit.long-label > .category-roulette-label-text {
+    width: 64px;
+    font-size: 0.40rem;
+  }
+}
