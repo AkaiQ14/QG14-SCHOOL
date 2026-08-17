@@ -1,4 +1,5 @@
 import {
+  deletePlayerOnServer,
   firestoreApiError,
   replacePlayerRecordsOnServer,
 } from "@/lib/firestore-admin";
@@ -43,6 +44,24 @@ export async function PUT(request: Request) {
     return Response.json({ ok: true }, {
       headers: { "Cache-Control": "no-store" },
     });
+  } catch (error) {
+    return firestoreApiError(error);
+  }
+}
+
+export async function DELETE(request: Request) {
+  try {
+    const body = (await request.json()) as Record<string, unknown>;
+    const player = typeof body.player === "string" ? body.player.trim() : "";
+    if (!player) {
+      return Response.json(
+        { error: "player-required", message: "اسم اللاعب مطلوب." },
+        { status: 400, headers: { "Cache-Control": "no-store" } },
+      );
+    }
+
+    await deletePlayerOnServer(player);
+    return Response.json({ ok: true }, { headers: { "Cache-Control": "no-store" } });
   } catch (error) {
     return firestoreApiError(error);
   }

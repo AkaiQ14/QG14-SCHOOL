@@ -43,6 +43,7 @@ export default function AnswersPage() {
       : "categories",
   );
   const [error, setError] = useState("");
+  const [categoryJump, setCategoryJump] = useState("");
 
   useEffect(() => {
     const controller = new AbortController();
@@ -75,6 +76,19 @@ export default function AnswersPage() {
     [bank],
   );
 
+  const jumpToCategory = (value: string) => {
+    setCategoryJump(value);
+    if (!value) return;
+    const index = CATEGORY_ORDER.indexOf(value);
+    if (index < 0) return;
+    window.requestAnimationFrame(() => {
+      document.getElementById("answers-category-" + index)?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+  };
+
   return (
     <main className="answers-page">
       <header className="answers-page-header">
@@ -103,9 +117,32 @@ export default function AnswersPage() {
       {error && <div className="answers-error">{error}</div>}
 
       {bank && section === "categories" && (
+        <div className="answers-category-jump-wrap">
+          <label className="answers-category-jump">
+            <span>الانتقال إلى تصنيف</span>
+            <select
+              value={categoryJump}
+              onChange={(event) => jumpToCategory(event.target.value)}
+              aria-label="الانتقال مباشرة إلى تصنيف"
+            >
+              <option value="">اختر التصنيف</option>
+              {CATEGORY_ORDER.map((category) => (
+                <option value={category} key={category}>{category}</option>
+              ))}
+            </select>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 9 5 5 5-5" /></svg>
+          </label>
+        </div>
+      )}
+
+      {bank && section === "categories" && (
         <div className="answers-category-groups">
-          {groupedQuestions.map((group) => (
-            <section className="answers-category-section" key={group.category}>
+          {groupedQuestions.map((group, groupIndex) => (
+            <section
+              className="answers-category-section"
+              id={"answers-category-" + groupIndex}
+              key={group.category}
+            >
               <header><h2>{group.category}</h2><span>{group.questions.length} أسئلة</span></header>
               <div className="answers-card-grid">
                 {group.questions.map((question, index) => (

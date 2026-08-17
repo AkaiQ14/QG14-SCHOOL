@@ -502,6 +502,18 @@ export async function recordCompletedMatchOnServer({
   }
 }
 
+export async function deletePlayerOnServer(playerName: string) {
+  const name = playerName.trim();
+  if (!name) return;
+
+  const account = await readServiceAccount();
+  const documentId = firestoreDocumentId(normalizePlayerName(name));
+  await commitWrites([
+    { delete: documentName(account.projectId, PLAYERS_COLLECTION, documentId) },
+    { delete: documentName(account.projectId, LEADERBOARD_COLLECTION, documentId) },
+  ]);
+}
+
 export async function replacePlayerRecordsOnServer(records: SyncedPlayerRecord[]) {
   const account = await readServiceAccount();
   const existing = await listCollection(PLAYERS_COLLECTION);

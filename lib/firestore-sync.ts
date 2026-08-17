@@ -140,6 +140,14 @@ export async function recordCompletedMatch({
   refreshActiveSubscription?.();
 }
 
+export async function deleteFirestorePlayer(player: string) {
+  await apiRequest("/api/firestore/players", {
+    method: "DELETE",
+    body: JSON.stringify({ player }),
+  });
+  refreshActiveSubscription?.();
+}
+
 export async function replaceFirestorePlayerRecords(records: SyncedPlayerRecord[]) {
   await apiRequest("/api/firestore/players", {
     method: "PUT",

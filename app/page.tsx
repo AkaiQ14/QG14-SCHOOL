@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import type { FormEvent } from "react";
 import {
+  deleteFirestorePlayer,
   recordCompletedMatch,
   replaceFirestorePlayerRecords,
   subscribeToFirestoreStats,
@@ -1171,6 +1172,22 @@ export default function Home() {
       });
   };
 
+  const deletePlayerRecord = async (record: PlayerRecord) => {
+    try {
+      await deleteFirestorePlayer(record.name);
+      setPlayerRecords((previous) => previous.filter((item) => item.id !== record.id));
+      setLeaderboard((previous) =>
+        previous.filter((entry) => normalizePlayerName(entry.name) !== normalizePlayerName(record.name)),
+      );
+      setFirestoreError("");
+      setToast("تم حذف " + record.name + " بالكامل من السجلات");
+      return true;
+    } catch (error) {
+      setFirestoreError(firestoreConnectionMessage(error));
+      return false;
+    }
+  };
+
   const resetToSetup = () => {
     const next = initialGame();
     next.screen = "setup";
@@ -1401,6 +1418,7 @@ export default function Home() {
         <AdminPanelModal
           records={playerRecords}
           onSave={savePlayerRecords}
+          onDelete={deletePlayerRecord}
           onClose={() => setAdminOpen(false)}
         />
       )}
@@ -2557,16 +2575,19 @@ function RecordSummaryStats({
 function AdminPanelModal({
   records,
   onSave,
+  onDelete,
   onClose,
 }: {
   records: PlayerRecord[];
   onSave: (records: PlayerRecord[]) => void;
+  onDelete: (record: PlayerRecord) => Promise<boolean>;
   onClose: () => void;
 }) {
   const [draftRecords, setDraftRecords] = useState<PlayerRecord[]>(() => records.map((record) => ({ ...record })));
   const [searchQuery, setSearchQuery] = useState("");
   const [newPlayerName, setNewPlayerName] = useState("");
   const [isDirty, setIsDirty] = useState(false);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
   const [feedback, setFeedback] = useState<{ text: string; tone: "success" | "error" } | null>(null);
 
   const rankedRecords = useMemo(
@@ -2636,6 +2657,20 @@ function AdminPanelModal({
     onSave(draftRecords);
     setIsDirty(false);
     setFeedback({ text: "تم حفظ جميع التغييرات بنجاح.", tone: "success" });
+  };
+
+  const deleteRecord = async (record: PlayerRecord) => {
+    if (!window.confirm("هل تريد حذف " + record.name + " بالكامل من المتصدرين وقاع الهامور؟")) return;
+    setDeletingId(record.id);
+    setFeedback(null);
+    const deleted = await onDelete(record);
+    setDeletingId(null);
+    if (!deleted) {
+      setFeedback({ text: "تعذر حذف اللاعب. تحقق من اتصال Firestore وحاول مرة أخرى.", tone: "error" });
+      return;
+    }
+    setDraftRecords((previous) => previous.filter((item) => item.id !== record.id));
+    setFeedback({ text: "تم حذف " + record.name + " بالكامل من السجلات.", tone: "success" });
   };
 
   return (
@@ -2715,27 +2750,42 @@ function AdminPanelModal({
                   </div>
                 </div>
 
-                <div className="record-controls">
-                  <RecordAdjuster
-                    label="النقاط"
-                    value={record.points}
-                    onDecrease={() => adjustDraftRecord(record.id, "points", -1)}
-                    onIncrease={() => adjustDraftRecord(record.id, "points", 1)}
-                  />
-                  <RecordAdjuster
-                    label="إجابات صحيحة"
-                    value={record.correct}
-                    tone="correct"
-                    onDecrease={() => adjustDraftRecord(record.id, "correct", -1)}
-                    onIncrease={() => adjustDraftRecord(record.id, "correct", 1)}
-                  />
-                  <RecordAdjuster
-                    label="إجابات خاطئة"
-                    value={record.wrong}
-                    tone="wrong"
-                    onDecrease={() => adjustDraftRecord(record.id, "wrong", -1)}
-                    onIncrease={() => adjustDraftRecord(record.id, "wrong", 1)}
-                  />
+                <div className="record-controls-zone">
+                  <div className="record-controls">
+                    <RecordAdjuster
+                      label="النقاط"
+                      value={record.points}
+                      onDecrease={() => adjustDraftRecord(record.id, "points", -1)}
+                      onIncrease={() => adjustDraftRecord(record.id, "points", 1)}
+                    />
+                    <RecordAdjuster
+                      label="إجابات صحيحة"
+                      value={record.correct}
+                      tone="correct"
+                      onDecrease={() => adjustDraftRecord(record.id, "correct", -1)}
+                      onIncrease={() => adjustDraftRecord(record.id, "correct", 1)}
+                    />
+                    <RecordAdjuster
+                      label="إجابات خاطئة"
+                      value={record.wrong}
+                      tone="wrong"
+                      onDecrease={() => adjustDraftRecord(record.id, "wrong", -1)}
+                      onIncrease={() => adjustDraftRecord(record.id, "wrong", 1)}
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    className="admin-delete-player"
+                    onClick={() => void deleteRecord(record)}
+                    disabled={deletingId === record.id}
+                    title={"حذف " + record.name}
+                    aria-label={"حذف " + record.name + " بالكامل"}
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M4 7h16M9 7V4h6v3M7 7l1 13h8l1-13M10 11v5M14 11v5" />
+                    </svg>
+                    <span>{deletingId === record.id ? "جارٍ الحذف" : "حذف"}</span>
+                  </button>
                 </div>
               </article>
             ))}
