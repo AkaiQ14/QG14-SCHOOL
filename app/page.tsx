@@ -214,7 +214,6 @@ const CATEGORY_ROULETTE_OPTIONS = [
   "أفلام ومسلسلات",
   "ألعاب",
   "جوكر",
-  "جوكر",
 ] as const;
 
 const CATEGORY_ROULETTE_SLICE = 360 / CATEGORY_ROULETTE_OPTIONS.length;
@@ -1887,6 +1886,41 @@ function CategoriesScreen({
               <h1>اختر التصنيف ورقم السؤال</h1>
             </div>
             <div className="category-heading-actions">
+              <section className="category-roulette-panel" aria-label="روليت التصنيفات">
+                <button
+                  type="button"
+                  className={cn("category-roulette", rouletteSpinning && "is-spinning")}
+                  onClick={spinCategoryRoulette}
+                  disabled={rouletteSpinning}
+                  aria-label={rouletteSpinning ? "العجلة تدور" : "لف روليت التصنيفات"}
+                >
+                  <span className="category-roulette-pointer" aria-hidden="true" />
+                  <span
+                    className="category-roulette-face"
+                    style={{ transform: `rotate(${rouletteRotation}deg)` }}
+                    aria-hidden="true"
+                  >
+                    {CATEGORY_ROULETTE_OPTIONS.map((option, index) => {
+                      const angle = (index + 0.5) * CATEGORY_ROULETTE_SLICE;
+                      return (
+                        <span
+                          className={cn("category-roulette-label-orbit", option === "جوكر" && "joker")}
+                          key={option + "-" + index}
+                          style={{ transform: `rotate(${angle}deg)` }}
+                        >
+                          <span style={{ transform: `translateY(-48px) rotate(${-angle}deg)` }}>{option}</span>
+                        </span>
+                      );
+                    })}
+                  </span>
+                  <span className="category-roulette-center" aria-hidden="true">QG14</span>
+                </button>
+                <div className="category-roulette-copy" aria-live="polite">
+                  <span>الروليت</span>
+                  <strong>{rouletteSpinning ? "تدور..." : rouletteResult ? rouletteResult : "اضغط للدوران"}</strong>
+                </div>
+              </section>
+
               <div className="turn-callout">
                 <span>الدور الآن</span>
                 <strong>{game.players[game.activePlayer].name}</strong>
@@ -1899,46 +1933,6 @@ function CategoriesScreen({
               )}
             </div>
           </div>
-
-          <section className="category-roulette-panel" aria-label="روليت التصنيفات">
-            <div className="category-roulette-copy">
-              <span className="section-kicker">روليت التصنيفات</span>
-              <strong>{rouletteSpinning ? "تدور الآن..." : rouletteResult ? "النتيجة: " + rouletteResult : "اضغط العجلة لتدور"}</strong>
-            </div>
-
-            <button
-              type="button"
-              className={cn("category-roulette", rouletteSpinning && "is-spinning")}
-              onClick={spinCategoryRoulette}
-              disabled={rouletteSpinning}
-              aria-label={rouletteSpinning ? "العجلة تدور" : "لف روليت التصنيفات"}
-            >
-              <span className="category-roulette-pointer" aria-hidden="true" />
-              <span
-                className="category-roulette-face"
-                style={{ transform: `rotate(${rouletteRotation}deg)` }}
-                aria-hidden="true"
-              >
-                {CATEGORY_ROULETTE_OPTIONS.map((option, index) => {
-                  const angle = (index + 0.5) * CATEGORY_ROULETTE_SLICE;
-                  return (
-                    <span
-                      className={cn("category-roulette-label-orbit", option === "جوكر" && "joker")}
-                      key={option + "-" + index}
-                      style={{ transform: `rotate(${angle}deg)` }}
-                    >
-                      <span style={{ transform: `translateY(-74px) rotate(${-angle}deg)` }}>{option}</span>
-                    </span>
-                  );
-                })}
-              </span>
-              <span className="category-roulette-center" aria-hidden="true">QG14</span>
-            </button>
-
-            <div className={cn("category-roulette-result", rouletteResult && "has-result")} aria-live="polite">
-              <span>{rouletteSpinning ? "..." : rouletteResult || "؟"}</span>
-            </div>
-          </section>
 
           <div className="category-columns-grid" aria-label="التصنيفات وأسئلتها">
             {CATEGORIES.map((category) => {

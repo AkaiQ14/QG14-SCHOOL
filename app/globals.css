@@ -10633,3 +10633,159 @@ body {
     grid-column: auto;
   }
 }
+
+/* Compact category roulette — kept in the heading so the category page stays within one desktop viewport */
+.category-game-layout .board-heading {
+  margin-bottom: 10px;
+}
+
+.category-game-layout .category-heading-actions {
+  align-items: center;
+}
+
+.category-game-layout .category-roulette-panel {
+  display: flex;
+  width: auto;
+  min-width: 226px;
+  margin: 0;
+  padding: 7px 9px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border-radius: 20px;
+  background: linear-gradient(145deg, rgba(76, 7, 28, 0.62), rgba(30, 2, 12, 0.82));
+}
+
+.category-game-layout .category-roulette {
+  width: 132px;
+  height: 132px;
+  flex: 0 0 132px;
+}
+
+.category-game-layout .category-roulette-face {
+  inset: 4px;
+  border-width: 3px;
+  background: conic-gradient(
+    from 0deg,
+    #287db0 0deg 60deg,
+    #3b9a67 60deg 120deg,
+    #b64a78 120deg 180deg,
+    #536cb7 180deg 240deg,
+    #8d8980 240deg 300deg,
+    #8a4a94 300deg 360deg
+  );
+}
+
+.category-game-layout .category-roulette-face::after {
+  background: repeating-conic-gradient(
+    from 0deg,
+    rgba(255, 255, 255, 0.58) 0deg 0.8deg,
+    transparent 0.8deg 60deg
+  );
+}
+
+.category-game-layout .category-roulette-label-orbit > span {
+  left: -34px;
+  top: -10px;
+  width: 68px;
+  min-height: 20px;
+  font-size: 0.43rem;
+  line-height: 1.12;
+}
+
+.category-game-layout .category-roulette-label-orbit.joker > span {
+  font-size: 0.49rem;
+}
+
+.category-game-layout .category-roulette-center {
+  width: 40px;
+  height: 40px;
+  border-width: 2px;
+  font-size: 0.42rem;
+}
+
+.category-game-layout .category-roulette-pointer {
+  top: -4px;
+  border-right-width: 9px;
+  border-left-width: 9px;
+  border-top-width: 18px;
+}
+
+.category-game-layout .category-roulette-copy {
+  width: 74px;
+  gap: 2px;
+  align-items: center;
+  text-align: center;
+}
+
+.category-game-layout .category-roulette-copy > span {
+  color: #d8b767;
+  font-size: 0.48rem;
+  font-weight: 900;
+}
+
+.category-game-layout .category-roulette-copy strong {
+  color: #fff2cf;
+  font-size: 0.62rem;
+  line-height: 1.35;
+}
+
+.category-game-layout .category-roulette-result {
+  display: none;
+}
+
+@media (min-width: 901px) {
+  .category-game-layout .board-heading > div:first-child {
+    flex: 0 1 auto;
+  }
+
+  .category-game-layout .category-heading-actions {
+    flex: 0 1 auto;
+  }
+}
+
+@media (max-width: 1100px) and (min-width: 901px) {
+  .category-game-layout .category-roulette-panel {
+    min-width: 198px;
+    padding: 6px 7px;
+    gap: 6px;
+  }
+
+  .category-game-layout .category-roulette {
+    width: 116px;
+    height: 116px;
+    flex-basis: 116px;
+  }
+
+  .category-game-layout .category-roulette-label-orbit > span {
+    transform-origin: center;
+  }
+
+  .category-game-layout .category-roulette-copy {
+    width: 68px;
+  }
+}
+
+@media (max-width: 900px) {
+  .category-game-layout .category-roulette-panel {
+    min-width: 204px;
+    align-self: flex-start;
+  }
+}
+
+@media (max-width: 560px) {
+  .category-game-layout .category-roulette-panel {
+    min-width: 188px;
+    padding: 6px;
+  }
+
+  .category-game-layout .category-roulette {
+    width: 110px;
+    height: 110px;
+    flex-basis: 110px;
+  }
+
+  .category-game-layout .category-roulette-copy {
+    width: 62px;
+  }
+}
