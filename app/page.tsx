@@ -233,25 +233,14 @@ const CATEGORIES: Array<{ name: string; className: CategoryKey }> = [
   { name: "ألعاب", className: "games" },
 ];
 
-const CATEGORY_ROULETTE_OPTIONS = [
-  "كرة قدم",
-  "أنمي",
-  "معلومات عامة",
-  "أفلام ومسلسلات",
-  "ألعاب",
-  "جوكر",
-] as const;
-
-const CATEGORY_ROULETTE_SLICE = 360 / CATEGORY_ROULETTE_OPTIONS.length;
-
-const CATEGORY_ROULETTE_COLORS = [
-  "#377fb7",
-  "#4d9c69",
-  "#c15f89",
-  "#5f72b7",
-  "#737980",
-  "#ba8b21",
-] as const;
+const CATEGORY_ROULETTE_COLORS: Record<string, string> = {
+  "كرة قدم": "#377fb7",
+  "أنمي": "#4d9c69",
+  "معلومات عامة": "#c15f89",
+  "أفلام ومسلسلات": "#5f72b7",
+  "ألعاب": "#737980",
+  "جوكر": "#ba8b21",
+};
 
 function roulettePoint(angle: number, radius: number) {
   const radians = (angle * Math.PI) / 180;
@@ -261,15 +250,19 @@ function roulettePoint(angle: number, radius: number) {
   };
 }
 
-function rouletteSectorPath(index: number) {
-  const startAngle = -90 + index * CATEGORY_ROULETTE_SLICE;
-  const endAngle = startAngle + CATEGORY_ROULETTE_SLICE;
+function rouletteSectorPath(index: number, slice: number) {
+  if (slice >= 359.999) {
+    return "M 80 8 A 72 72 0 1 1 80 152 A 72 72 0 1 1 80 8 Z";
+  }
+  const startAngle = -90 + index * slice;
+  const endAngle = startAngle + slice;
   const start = roulettePoint(startAngle, 72);
   const end = roulettePoint(endAngle, 72);
-  return `M 80 80 L ${start.x.toFixed(3)} ${start.y.toFixed(3)} A 72 72 0 0 1 ${end.x.toFixed(3)} ${end.y.toFixed(3)} Z`;
+  const largeArcFlag = slice > 180 ? 1 : 0;
+  return `M 80 80 L ${start.x.toFixed(3)} ${start.y.toFixed(3)} A 72 72 0 ${largeArcFlag} 1 ${end.x.toFixed(3)} ${end.y.toFixed(3)} Z`;
 }
 
-function rouletteLabelLines(label: (typeof CATEGORY_ROULETTE_OPTIONS)[number]) {
+function rouletteLabelLines(label: string) {
   if (label === "كرة قدم") return ["كرة", "قدم"];
   if (label === "معلومات عامة") return ["معلومات", "عامة"];
   if (label === "أفلام ومسلسلات") return ["أفلام", "ومسلسلات"];
@@ -1902,22 +1895,40 @@ function CategoriesScreen({
   const [rouletteSpinning, setRouletteSpinning] = useState(false);
   const [rouletteResult, setRouletteResult] = useState<string | null>(null);
 
-  function spinCategoryRoulette() {
-    if (rouletteSpinning) return;
+  const rouletteOptions = [
+    ...CATEGORIES.filter((category) => {
+      const completed = Array.from({ length: CATEGORY_SLOT_COUNT }, (_, index) =>
+        makeSlotKey(category.name, index + 1),
+      ).filter((slot) => game.usedSlots.includes(slot)).length;
+      return completed < CATEGORY_SLOT_COUNT;
+    }).map((category) => category.name),
+    "جوكر",
+  ];
+  const rouletteSlice = 360 / rouletteOptions.length;
 
-    const selectedIndex = Math.floor(Math.random() * CATEGORY_ROULETTE_OPTIONS.length);
-    const selectedCenter = (selectedIndex + 0.5) * CATEGORY_ROULETTE_SLICE;
+  useEffect(() => {
+    if (rouletteResult && rouletteResult !== "جوكر" && !rouletteOptions.includes(rouletteResult)) {
+      setRouletteResult(null);
+    }
+  }, [rouletteOptions.join("|"), rouletteResult]);
+
+  function spinCategoryRoulette() {
+    if (rouletteSpinning || rouletteOptions.length === 0) return;
+
+    const selectedIndex = Math.floor(Math.random() * rouletteOptions.length);
+    const selectedCenter = (selectedIndex + 0.5) * rouletteSlice;
     const desiredRotation = (360 - selectedCenter) % 360;
     const currentRotation = ((rouletteRotation % 360) + 360) % 360;
     const alignmentDelta = (desiredRotation - currentRotation + 360) % 360;
     const nextRotation = rouletteRotation + 360 * 5 + alignmentDelta;
+    const selectedOption = rouletteOptions[selectedIndex];
 
     setRouletteSpinning(true);
     setRouletteResult(null);
     setRouletteRotation(nextRotation);
 
     window.setTimeout(() => {
-      setRouletteResult(CATEGORY_ROULETTE_OPTIONS[selectedIndex]);
+      setRouletteResult(selectedOption);
       setRouletteSpinning(false);
     }, 2000);
   }
@@ -1959,8 +1970,8 @@ function CategoriesScreen({
                     style={{ transform: `rotate(${rouletteRotation}deg)` }}
                     aria-hidden="true"
                   >
-                    {CATEGORY_ROULETTE_OPTIONS.map((option, index) => {
-                      const centerAngle = -90 + (index + 0.5) * CATEGORY_ROULETTE_SLICE;
+                    {rouletteOptions.map((option, index) => {
+                      const centerAngle = -90 + (index + 0.5) * rouletteSlice;
                       const labelPoint = roulettePoint(centerAngle, 49);
                       const labelRotation = centerAngle + 90;
                       const lines = rouletteLabelLines(option);
@@ -1968,8 +1979,8 @@ function CategoriesScreen({
                       return (
                         <g key={option}>
                           <path
-                            d={rouletteSectorPath(index)}
-                            fill={CATEGORY_ROULETTE_COLORS[index]}
+                            d={rouletteSectorPath(index, rouletteSlice)}
+                            fill={CATEGORY_ROULETTE_COLORS[option] ?? "#6c6873"}
                             stroke="rgba(255,235,184,0.72)"
                             strokeWidth="1.35"
                           />
