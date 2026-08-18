@@ -12970,3 +12970,170 @@ body {
     flex: 1 1 130px;
   }
 }
+
+/* ===== Category question lifelines: match the player-name setup card style ===== */
+.question-modal .question-player-aid-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: center;
+  gap: 7px;
+}
+
+.question-modal .question-player-aid-list button {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 82px;
+  width: 100%;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 6px;
+  border: 1px solid color-mix(in srgb, var(--player-aid-color) 24%, rgba(255,255,255,.06));
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--player-aid-color) 5%, rgba(255,255,255,.018));
+  color: #efe1d9;
+  font-family: inherit;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.025);
+  transition: 160ms ease;
+}
+
+.question-modal .question-player-aid-list button:hover:not(:disabled) {
+  border-color: color-mix(in srgb, var(--player-aid-color) 66%, #ffd66f 20%);
+  background: color-mix(in srgb, var(--player-aid-color) 10%, rgba(50,3,17,.72));
+  color: #fff6ea;
+  transform: translateY(-1px);
+}
+
+.question-modal .question-player-aid-list button .aid-icon {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  border-radius: 11px;
+}
+
+.question-modal .question-aid-label {
+  display: flex;
+  min-width: 0;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  text-align: center;
+}
+
+.question-modal .question-aid-label strong {
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  color: inherit;
+  font-size: 0.62rem;
+  font-weight: 900;
+  line-height: 1.3;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.question-modal .question-aid-label small {
+  overflow: hidden;
+  width: 100%;
+  color: #bfa6a0;
+  font-size: 0.34rem;
+  font-weight: 750;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.question-modal .question-player-aid-list button:disabled {
+  cursor: default;
+  transform: none;
+}
+
+.question-modal .question-player-aid-list button.is-waiting {
+  border-color: rgba(255,255,255,.08);
+  background: rgba(255,255,255,.018);
+  color: #baa6a1;
+  opacity: .68;
+}
+
+.question-modal .question-player-aid-list button.is-used {
+  border-color: rgba(255,255,255,.055);
+  background: rgba(16,1,6,.4);
+  color: #8d7974;
+  filter: grayscale(.45);
+  opacity: .5;
+}
+
+.question-modal .question-player-aid-list .audience-aid-button {
+  border-color: color-mix(in srgb, #f484b8 42%, rgba(255,255,255,.06));
+  background: color-mix(in srgb, #f484b8 7%, rgba(255,255,255,.018));
+  color: #ffd8e9;
+}
+
+/* Keep both players compact while preserving the setup-page lifeline proportions. */
+.question-modal .question-player-aid-card {
+  grid-template-columns: 82px minmax(0, 1fr);
+}
+
+@media (max-height: 820px) and (min-width: 721px) {
+  .question-modal .question-player-aid-list {
+    gap: 5px;
+  }
+
+  .question-modal .question-player-aid-list button {
+    min-height: 68px;
+    gap: 4px;
+    padding: 5px 4px;
+    border-radius: 14px;
+  }
+
+  .question-modal .question-player-aid-list button .aid-icon {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
+    border-radius: 10px;
+  }
+
+  .question-modal .question-aid-label strong {
+    font-size: 0.54rem;
+  }
+
+  .question-modal .question-aid-label small {
+    font-size: 0.29rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .question-modal .question-player-aid-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 5px;
+  }
+
+  .question-modal .question-player-aid-list button {
+    min-height: 68px;
+    gap: 4px;
+    padding: 5px 4px;
+    border-radius: 14px;
+  }
+
+  .question-modal .question-player-aid-list button .aid-icon {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
+    border-radius: 10px;
+  }
+
+  .question-modal .question-aid-label strong {
+    font-size: 0.53rem;
+  }
+
+  .question-modal .question-aid-label small {
+    display: none;
+  }
+}
