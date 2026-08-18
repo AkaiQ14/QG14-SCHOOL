@@ -11951,3 +11951,18 @@ body {
     min-height: 86px;
   }
 }
+
+/* Slightly larger official logo on the home page only */
+.home-screen .home-logo-panel > img {
+  width: auto;
+  height: min(305px, 68vw);
+  max-width: 88%;
+  max-height: 92%;
+}
+
+@media (max-width: 560px) {
+  .home-screen .home-logo-panel > img {
+    height: min(250px, 62vw);
+    max-width: 86%;
+  }
+}
