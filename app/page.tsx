@@ -143,7 +143,7 @@ const STORAGE_QUESTION_HISTORY = "madrasa-al-hanka-question-history-v1";
 const QUESTION_BANK_URL = "/data/questions.json";
 const CATEGORY_QUESTION_TARGET = 16;
 const CATEGORY_SLOT_COUNT = 5;
-const RAPID_QUESTION_TARGET = 12;
+const RAPID_QUESTION_TARGET = 6;
 const CATEGORY_QUESTION_TYPES: QuestionType[] = ["double", "normal", "normal", "hard", "dual"];
 
 const AVATARS = [

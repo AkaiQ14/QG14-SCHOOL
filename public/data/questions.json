@@ -1,311 +1,552 @@
 {
   "categories": [
     {
-      "id": "anime-custom-normal",
+      "id": "set1-anime-normal-1",
       "category": "أنمي",
       "type": "normal",
-      "question": "ما اسم الطائر الذي كان مع فيفي في أراباستا في ون بيس؟",
-      "answer": "كارو",
-      "hint": "رفيق فيفي الذي يشبه البطة."
-    },
-    {
-      "id": "anime-custom-normal-2",
-      "category": "أنمي",
-      "type": "normal",
-      "question": "من هو قائد قراصنة قبعة القش في ون بيس؟",
-      "answer": "مونكي دي لوفي",
+      "question": "كم عدد الأبواب اللي تتكون منها بوابة الاختبار عند الزولديك ؟",
+      "answer": "7 ابواب",
       "choices": [
-        "مونكي دي لوفي",
-        "رورونوا زورو",
-        "شانكس"
-      ],
-      "hint": "صاحب قبعة القش وبطل السلسلة."
-    },
-    {
-      "id": "anime-custom-double",
-      "category": "أنمي",
-      "type": "double",
-      "parts": [
-        {
-          "question": "من مستخدم تقنية الظلال في ناروتو؟",
-          "answer": "شيكامارو نارا"
-        },
-        {
-          "question": "ما السلاح الذي كانت تستعمله نوبارا في جوجوتسو كايسن؟",
-          "answer": "مطرقة"
-        }
-      ]
-    },
-    {
-      "id": "anime-custom-hard",
-      "category": "أنمي",
-      "type": "hard",
-      "question": "ما اسم السيف الذي كان يملكه إيتاشي وامتص به أوروتشيمارو؟",
-      "answer": "سيف توتسوكا",
-      "hint": "سيف روحي ظهر مع سوسانو إيتاشي."
-    },
-    {
-      "id": "anime-custom-dual",
-      "category": "أنمي",
-      "type": "dual",
-      "question": "ما اسم السيف الذي حصل عليه زورو هدية مجانية من صاحب متجر السيوف في لوغتاون؟",
-      "answer": "يوباشيري",
-      "choices": [
-        "يوباشيري",
-        "إنما",
-        "شيسوي"
-      ],
-      "hint": "حصل عليه زورو بعد اختباره حظه أمام سيف ملعون."
-    },
-    {
-      "id": "football-custom-normal",
-      "category": "كرة قدم",
-      "type": "normal",
-      "question": "من المنتخب الفائز بكأس العالم 2010؟",
-      "answer": "إسبانيا",
-      "choices": [
-        "إسبانيا",
-        "ألمانيا",
-        "فرنسا"
-      ],
-      "hint": "فاز بالنهائي بهدف أندريس إنييستا."
-    },
-    {
-      "id": "football-custom-normal-2",
-      "category": "كرة قدم",
-      "type": "normal",
-      "question": "كم لاعبًا يبدأ المباراة لكل فريق داخل أرض الملعب؟",
-      "answer": "11 لاعبًا",
-      "choices": [
-        "10 لاعبين",
-        "11 لاعبًا",
-        "12 لاعبًا"
-      ],
-      "hint": "يشمل العدد حارس المرمى."
-    },
-    {
-      "id": "football-custom-double",
-      "category": "كرة قدم",
-      "type": "double",
-      "parts": [
-        {
-          "question": "ما أول لقب دولي فاز به رونالدو مع البرتغال؟",
-          "answer": "يورو 2016"
-        },
-        {
-          "question": "من هداف دوري أبطال أوروبا في الموسم السابق؟",
-          "answer": "كيليان مبابي"
-        }
-      ]
-    },
-    {
-      "id": "football-custom-hard",
-      "category": "كرة قدم",
-      "type": "hard",
-      "question": "من صاحب أسرع هدف في تاريخ كأس العالم؟",
-      "answer": "هاكان شوكور",
-      "hint": "لاعب تركي سجل أمام كوريا الجنوبية."
-    },
-    {
-      "id": "football-custom-dual",
-      "category": "كرة قدم",
-      "type": "dual",
-      "question": "من آخر لاعب إيطالي ترشح للكرة الذهبية؟",
-      "answer": "جورجينيو",
-      "choices": [
-        "مالديني",
-        "كانافارو",
-        "جورجينيو",
-        "كييزا"
-      ],
-      "hint": "حل ثالثًا في ترتيب الكرة الذهبية عام 2021."
-    },
-    {
-      "id": "general-custom-normal",
-      "category": "معلومات عامة",
-      "type": "normal",
-      "question": "ما العملة الرسمية لدولة ماليزيا؟",
-      "answer": "رينغيت",
-      "choices": [
-        "روبل",
-        "رينغيت",
-        "ريال"
-      ],
-      "hint": "يبدأ اسمها بحرف الراء."
-    },
-    {
-      "id": "general-custom-normal-2",
-      "category": "معلومات عامة",
-      "type": "normal",
-      "question": "ما أكبر كوكب في المجموعة الشمسية؟",
-      "answer": "المشتري",
-      "choices": [
-        "المشتري",
-        "زحل",
-        "الأرض"
-      ],
-      "hint": "كوكب غازي عملاق."
-    },
-    {
-      "id": "general-custom-double",
-      "category": "معلومات عامة",
-      "type": "double",
-      "parts": [
-        {
-          "question": "ما عاصمة اليابان القديمة؟",
-          "answer": "كيوتو"
-        },
-        {
-          "question": "من رسام لوحة الموناليزا؟",
-          "answer": "ليوناردو دا فينشي"
-        }
-      ]
-    },
-    {
-      "id": "general-custom-hard",
-      "category": "معلومات عامة",
-      "type": "hard",
-      "question": "ما الدولة التي تمتلك أكبر عدد من الجزر في العالم؟",
-      "answer": "السويد، بنحو 267 ألف جزيرة",
-      "hint": "دولة إسكندنافية."
-    },
-    {
-      "id": "general-custom-dual",
-      "category": "معلومات عامة",
-      "type": "dual",
-      "question": "ما العنصر الكيميائي الذي رمزه Sn؟",
-      "answer": "القصدير",
-      "choices": [
-        "النحاس",
-        "الكبريت",
-        "القصدير"
-      ],
-      "hint": "اشتُق رمزه من اسمه اللاتيني Stannum."
-    },
-    {
-      "id": "movies-custom-normal",
-      "category": "أفلام ومسلسلات",
-      "type": "normal",
-      "question": "من البطل الخارق الذي يستعمل المطرقة؟",
-      "answer": "ثور",
-      "choices": [
-        "ثور",
-        "وولفرين",
-        "آيرون مان"
-      ],
-      "hint": "إله الرعد في عالم مارفل."
-    },
-    {
-      "id": "movies-custom-normal-2",
-      "category": "أفلام ومسلسلات",
-      "type": "normal",
-      "question": "من الممثل الذي أدى شخصية جاك سبارو في سلسلة Pirates of the Caribbean؟",
-      "answer": "جوني ديب",
-      "choices": [
-        "جوني ديب",
-        "براد بيت",
-        "ليوناردو دي كابريو"
-      ],
-      "hint": "ممثل أمريكي ارتبط بالشخصية في معظم أفلام السلسلة."
-    },
-    {
-      "id": "movies-custom-double",
-      "category": "أفلام ومسلسلات",
-      "type": "double",
-      "parts": [
-        {
-          "question": "ما اسم القبطان الذي كان يطارد جاك سبارو في الفيلم الأول من Pirates of the Caribbean؟",
-          "answer": "باربوسا"
-        },
-        {
-          "question": "كم يبلغ عدد أحجار ثانوس؟",
-          "answer": "6 أحجار"
-        }
-      ]
-    },
-    {
-      "id": "movies-custom-hard",
-      "category": "أفلام ومسلسلات",
-      "type": "hard",
-      "question": "في أي عام صدر فيلم Batman: The Dark Knight؟",
-      "answer": "2008",
-      "hint": "صدر في العام نفسه الذي انطلقت فيه أفلام عالم مارفل السينمائي."
-    },
-    {
-      "id": "movies-custom-dual",
-      "category": "أفلام ومسلسلات",
-      "type": "dual",
-      "question": "كم عدد أعضاء الأفنجرز الأساسيين الذين ظهروا في فيلم Endgame؟",
-      "answer": "6",
-      "choices": [
-        "5",
         "6",
         "7",
-        "8"
-      ],
-      "hint": "هم الفريق الأصلي الذي اجتمع في فيلم The Avengers."
+        "8",
+        "9"
+      ]
     },
     {
-      "id": "games-custom-normal",
-      "category": "ألعاب",
+      "id": "set1-anime-normal-2",
+      "category": "أنمي",
       "type": "normal",
-      "question": "من بطل لعبة Red Dead Redemption 1؟",
-      "answer": "جون مارستون",
-      "choices": [
-        "جون مارستون",
-        "آرثر مورغان",
-        "تشارلز سميث"
-      ],
-      "hint": "ليس بطل الجزء الثاني الرئيسي."
+      "question": "من هو الهاشيرا الذي قام هاجم نيزوكو في المقر الرئيسي ؟",
+      "answer": "سانيمي - هاشيرا الرياح"
     },
     {
-      "id": "games-custom-normal-2",
-      "category": "ألعاب",
-      "type": "normal",
-      "question": "ما اسم الشخصية الرئيسية في سلسلة God of War؟",
-      "answer": "كريتوس",
-      "choices": [
-        "كريتوس",
-        "دانتي",
-        "جيرالت"
-      ],
-      "hint": "محارب إسبرطي أصبح إله الحرب."
-    },
-    {
-      "id": "games-custom-double",
-      "category": "ألعاب",
+      "id": "set1-anime-double",
+      "category": "أنمي",
       "type": "double",
       "parts": [
         {
-          "question": "من كان على غلاف لعبة FIFA 17؟",
-          "answer": "ماركو رويس"
+          "question": "ما هو اسم الزنباكتو الخاص بـ ايتشيغو ؟",
+          "answer": "زانغيتسو"
         },
         {
-          "question": "في أي عام صدرت لعبة Call of Duty: Black Ops III؟",
-          "answer": "2015"
+          "question": "كم عدد البوابات التي فتحها غاي ضد مادارا ؟",
+          "answer": "8 بوابات"
         }
       ]
     },
     {
-      "id": "games-custom-hard",
-      "category": "ألعاب",
+      "id": "set1-anime-hard",
+      "category": "أنمي",
       "type": "hard",
-      "question": "ما اسم الاستوديو الذي طور لعبة The Last of Us؟",
-      "answer": "Naughty Dog",
-      "hint": "الاستوديو نفسه طوّر سلسلة Uncharted."
+      "question": "ما هو اسم صديق آشيلاد المقرب ؟ ( فينلاند ساغا)",
+      "answer": "بيورن"
     },
     {
-      "id": "games-custom-dual",
+      "id": "set1-anime-dual",
+      "category": "أنمي",
+      "type": "dual",
+      "question": "ما هو اسم نائب ماجيلان في سجن الامبل داون ؟",
+      "answer": "هانيبال",
+      "choices": [
+        "نيبال",
+        "هانيبال",
+        "نيبول",
+        "هانيبول"
+      ]
+    },
+    {
+      "id": "set1-football-normal-1",
+      "category": "كرة قدم",
+      "type": "normal",
+      "question": "ما هو اسم ملعب اتليتكو مدريد ؟",
+      "answer": "رياض اير ميتروبوليتانو"
+    },
+    {
+      "id": "set1-football-normal-2",
+      "category": "كرة قدم",
+      "type": "normal",
+      "question": "ما هو اللقب الشائع الذي يطلق على نادي دورتموند ؟",
+      "answer": "الجراد الاصفر",
+      "choices": [
+        "الاصفر والاسود",
+        "الاسود الصفراء",
+        "الجراد الاصفر",
+        "القطط السوداء"
+      ]
+    },
+    {
+      "id": "set1-football-double",
+      "category": "كرة قدم",
+      "type": "double",
+      "parts": [
+        {
+          "question": "من هو بطل دوري ابطال اوروبا عام 2015",
+          "answer": "برشلونة"
+        },
+        {
+          "question": "من سجل هدف مانشستر سيتي الوحيد في نهائي اسطنبول ليتوجوا بـ اول لقب دوري ابطال لهم ؟",
+          "answer": "رودري"
+        }
+      ]
+    },
+    {
+      "id": "set1-football-hard",
+      "category": "كرة قدم",
+      "type": "hard",
+      "question": "من هو اخر لاعب يحقق البالندور ( الكرة الذهبية ) قبل بداية سيطرة ميسي ورونالدو ؟",
+      "answer": "كاكا مع الميلان في 2007"
+    },
+    {
+      "id": "set1-football-dual",
+      "category": "كرة قدم",
+      "type": "dual",
+      "question": "في اي ملعب اقيمت مباراة افتتاح مونديال قطر 2022 ؟",
+      "answer": "استاد البيت",
+      "choices": [
+        "استاد لوسيل",
+        "استاد البيت",
+        "استاد المدينة التعليمية",
+        "استاد 974"
+      ]
+    },
+    {
+      "id": "set1-general-normal-1",
+      "category": "معلومات عامة",
+      "type": "normal",
+      "question": "ما هي عاصنة بلغاريا ؟",
+      "answer": "صوفيا",
+      "choices": [
+        "صوفيا",
+        "بودابست",
+        "كوبنهاغن",
+        "كييف"
+      ]
+    },
+    {
+      "id": "set1-general-normal-2",
+      "category": "معلومات عامة",
+      "type": "normal",
+      "question": "ما هي الدولة التي تعرف بـ بلاد الأرز ؟",
+      "answer": "لبنان"
+    },
+    {
+      "id": "set1-general-double",
+      "category": "معلومات عامة",
+      "type": "double",
+      "parts": [
+        {
+          "question": "ما هي وحدة قياس شدة التيار الكهربائي ؟",
+          "answer": "الامبير"
+        },
+        {
+          "question": "ما هو المعدن الوحيد الذي يكون سائل في درجة حرارة الغرفة ؟",
+          "answer": "الزئبق"
+        }
+      ]
+    },
+    {
+      "id": "set1-general-hard",
+      "category": "معلومات عامة",
+      "type": "hard",
+      "question": "ما هو اسم المضيق الذي يفصل بين الجزء الاوروبي والاسيوي لـ مدينة اسطنبول ؟",
+      "answer": "البوسفور"
+    },
+    {
+      "id": "set1-general-dual",
+      "category": "معلومات عامة",
+      "type": "dual",
+      "question": "ما هو الكوكب الوحيد الذي يدور مع عقارب الساعة ؟",
+      "answer": "الزهرة",
+      "choices": [
+        "المريخ",
+        "الارض",
+        "الزهرة",
+        "المشتري"
+      ]
+    },
+    {
+      "id": "set1-games-normal-1",
+      "category": "ألعاب",
+      "type": "normal",
+      "question": "كم هو عدد اجزاء لعبة Resident Evil الاساسية بدون الريميك ؟",
+      "answer": "11",
+      "choices": [
+        "8",
+        "9",
+        "10",
+        "11"
+      ]
+    },
+    {
+      "id": "set1-games-normal-2",
+      "category": "ألعاب",
+      "type": "normal",
+      "question": "ما هي اللعبة التي حازت على جائزة لعبة السنة عام 2016 ؟",
+      "answer": "Overwatch",
+      "choices": [
+        "Overwatch",
+        "The Witcher 3",
+        "Sekiro",
+        "The Last of us Part 2"
+      ]
+    },
+    {
+      "id": "set1-games-double",
+      "category": "ألعاب",
+      "type": "double",
+      "parts": [
+        {
+          "question": "ما هي الشركة التي طورت اجزاء PES سابقاً ؟",
+          "answer": "KONAMI"
+        },
+        {
+          "question": "ما هو لقب مالينيا في Elden Ring ؟",
+          "answer": "نصل ميكيلا / Blade Of Miquella"
+        }
+      ]
+    },
+    {
+      "id": "set1-games-hard",
+      "category": "ألعاب",
+      "type": "hard",
+      "question": "من هو اللاعب العربي الذي كان متواجد في غلاف لعبة فيفا 15 في نسخة الشرق الاوسط ؟",
+      "answer": "يحيى الشهري"
+    },
+    {
+      "id": "set1-games-dual",
       "category": "ألعاب",
       "type": "dual",
-      "question": "من الشخصية الرئيسية في سلسلة Metal Gear Solid؟",
-      "answer": "سوليد سنيك",
+      "question": "كم يبلغ عدد البوسات في Bloodborne مع توسعة The Old Hunters؟",
+      "answer": "22",
       "choices": [
-        "سوليد سنيك",
-        "ليون كينيدي",
-        "نيثن دريك"
-      ],
-      "hint": "جندي متخصص في مهام التسلل."
+        "18",
+        "30",
+        "22",
+        "10"
+      ]
+    },
+    {
+      "id": "set1-movies-normal-1",
+      "category": "أفلام ومسلسلات",
+      "type": "normal",
+      "question": "ما هو اسم ذئب جون سنو ؟",
+      "answer": "غوست",
+      "choices": [
+        "ليساندرو",
+        "غوست",
+        "فردريك"
+      ]
+    },
+    {
+      "id": "set1-movies-normal-2",
+      "category": "أفلام ومسلسلات",
+      "type": "normal",
+      "question": "ما هو اسم شقيق شارلوك هولمز الاكبر ؟",
+      "answer": "مايكروفت"
+    },
+    {
+      "id": "set1-movies-double",
+      "category": "أفلام ومسلسلات",
+      "type": "double",
+      "parts": [
+        {
+          "question": "من هو بطل فيلم Marvel Civil War ؟",
+          "answer": "Captain America"
+        },
+        {
+          "question": "ما هو اسم سبايدر مان الحقيقي داخل القصة ؟",
+          "answer": "بيتر باركر"
+        }
+      ]
+    },
+    {
+      "id": "set1-movies-hard",
+      "category": "أفلام ومسلسلات",
+      "type": "hard",
+      "question": "في أي عام صدر فيلم Batman The Dark Knight ؟",
+      "answer": "2008"
+    },
+    {
+      "id": "set1-movies-dual",
+      "category": "أفلام ومسلسلات",
+      "type": "dual",
+      "question": "كم عدد افلام سلسلة Harry Potter الأصلية ؟",
+      "answer": "8",
+      "choices": [
+        "7",
+        "8",
+        "9"
+      ]
+    },
+    {
+      "id": "set2-anime-normal-1",
+      "category": "أنمي",
+      "type": "normal",
+      "question": "كم عدد الأيام اللي استغرقها الأكاتسكي لاستخراج وحش غارا ؟",
+      "answer": "3 ايام",
+      "choices": [
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
+    {
+      "id": "set2-anime-normal-2",
+      "category": "أنمي",
+      "type": "normal",
+      "question": "ما هو اسم سفينة اللحية البيضاء ؟",
+      "answer": "موبي ديك"
+    },
+    {
+      "id": "set2-anime-double",
+      "category": "أنمي",
+      "type": "double",
+      "parts": [
+        {
+          "question": "من هي امبراطورة امازون ليلي الحالية ؟",
+          "answer": "هانكوك"
+        },
+        {
+          "question": "كم هي مدة العذاب اللي قضاها كاكاشي داخل وهم الغينجتسو الذي استعمله ايتاشي؟",
+          "answer": "3 ايام / 72 ساعة"
+        }
+      ]
+    },
+    {
+      "id": "set2-anime-hard",
+      "category": "أنمي",
+      "type": "hard",
+      "question": "كم كان رقم النينجا هانزو في اختبار الصيادين ؟",
+      "answer": "294"
+    },
+    {
+      "id": "set2-anime-dual",
+      "category": "أنمي",
+      "type": "dual",
+      "question": "ما اسم قدرة كورابيكا التي تسمح له بتقييد أعضاء العناكب؟",
+      "answer": "تشين جيل /  Chain Jail",
+      "choices": [
+        "زمن الامبراطور",
+        "هولي تشين",
+        "تشين جيل"
+      ]
+    },
+    {
+      "id": "set2-football-normal-1",
+      "category": "كرة قدم",
+      "type": "normal",
+      "question": "من هو اول منتخب اسيوي يصل لنصف نهائي كأس العالم ؟",
+      "answer": "كوربا الجنوبية",
+      "choices": [
+        "كوريا الجنوبية",
+        "اليابان",
+        "استراليا"
+      ]
+    },
+    {
+      "id": "set2-football-normal-2",
+      "category": "كرة قدم",
+      "type": "normal",
+      "question": "اين اقيم كأس العالم عام 2010 ؟",
+      "answer": "جنوب افريقيا"
+    },
+    {
+      "id": "set2-football-double",
+      "category": "كرة قدم",
+      "type": "double",
+      "parts": [
+        {
+          "question": "من هو بطل يورو 2020 ؟",
+          "answer": "ايطاليا"
+        },
+        {
+          "question": "من هو اول منتخب عربي تأهل لبطولة كأس العالم ؟",
+          "answer": "مصر"
+        }
+      ]
+    },
+    {
+      "id": "set2-football-hard",
+      "category": "كرة قدم",
+      "type": "hard",
+      "question": "بـ استثناء بلجيكا وكرواتيا من هو المنتخب الثالث الذي حقق العلامة الكاملة في كأس العالم 2018 في دور المجموعات ؟",
+      "answer": "الاوروغواي"
+    },
+    {
+      "id": "set2-football-dual",
+      "category": "كرة قدم",
+      "type": "dual",
+      "question": "على اي ملعب اقيم نهائي دوري ابطال اوروبا عام 2016 ؟",
+      "answer": "سان سيرو",
+      "choices": [
+        "دراغاو",
+        "برلين الاولمبي",
+        "سان سيرو",
+        "حديقة الامراء"
+      ]
+    },
+    {
+      "id": "set2-general-normal-1",
+      "category": "معلومات عامة",
+      "type": "normal",
+      "question": "ما اسم العملية التي تحول فيها النباتات ضوء الشمس إلى طاقة كيميائية؟",
+      "answer": "البناء الضوئي"
+    },
+    {
+      "id": "set2-general-normal-2",
+      "category": "معلومات عامة",
+      "type": "normal",
+      "question": "ما هو العنصر الذي رمزة Fe ؟",
+      "answer": "الحديد",
+      "choices": [
+        "الزئبق",
+        "الحديد",
+        "الفلور",
+        "الفوسفور"
+      ]
+    },
+    {
+      "id": "set2-general-double",
+      "category": "معلومات عامة",
+      "type": "double",
+      "parts": [
+        {
+          "question": "ما هي اكبر دولة عربية من حيث المساحة ؟",
+          "answer": "الجزائر"
+        },
+        {
+          "question": "كم عدد أيام السنة الكبيسة؟",
+          "answer": "366"
+        }
+      ]
+    },
+    {
+      "id": "set2-general-hard",
+      "category": "معلومات عامة",
+      "type": "hard",
+      "question": "في أي عام سقطت الإمبراطورية الرومانية الغربية؟",
+      "answer": "476م"
+    },
+    {
+      "id": "set2-general-dual",
+      "category": "معلومات عامة",
+      "type": "dual",
+      "question": "ما هي سلسلة الجبال المشهورة في امريكا الجنوبية ؟",
+      "answer": "جبال الانديز",
+      "choices": [
+        "جبال الهيمالايا",
+        "جبال الالب",
+        "جبال الانديز"
+      ]
+    },
+    {
+      "id": "set2-movies-normal-1",
+      "category": "أفلام ومسلسلات",
+      "type": "normal",
+      "question": "من كان العدو الرئيسي في يفلم Avengers Endgame ؟",
+      "answer": "ثانوس"
+    },
+    {
+      "id": "set2-movies-normal-2",
+      "category": "أفلام ومسلسلات",
+      "type": "normal",
+      "question": "في اي مدينة تقع احداث مسلسل peaky blinders ؟",
+      "answer": "برمنغهام",
+      "choices": [
+        "برمنغهام",
+        "لندن",
+        "اكسفورد",
+        "كامبريدج"
+      ]
+    },
+    {
+      "id": "set2-movies-double",
+      "category": "أفلام ومسلسلات",
+      "type": "double",
+      "parts": [
+        {
+          "question": "ما هو اول فيلم تم اصداره في تاريخ عالم مارفل السينمائي ؟",
+          "answer": "ايرون مان في 2008"
+        },
+        {
+          "question": "ماذا كانت وظيفة او مهنة والتر وايت ؟",
+          "answer": "كيميائي/مدرس كيمياء"
+        }
+      ]
+    },
+    {
+      "id": "set2-movies-hard",
+      "category": "أفلام ومسلسلات",
+      "type": "hard",
+      "question": "ما هو اسم شخصية ليوناردو دي كابريو في فيلم Inception ؟",
+      "answer": "دوم كوب"
+    },
+    {
+      "id": "set2-movies-dual",
+      "category": "أفلام ومسلسلات",
+      "type": "dual",
+      "question": "ما اسم المطرقة التي استخدمها كابتن أمريكا في  فيلم Avengers: Endgame؟",
+      "answer": "ميولنير",
+      "choices": [
+        "سوراي",
+        "كارل",
+        "ميولنير"
+      ]
+    },
+    {
+      "id": "set2-games-normal-1",
+      "category": "ألعاب",
+      "type": "normal",
+      "question": "من هو اللاعب الاخر الذي كان متواجد بجانب واين روني في غلا فيفا 12 في النسخة العالمية ؟",
+      "answer": "جاك ويلشير",
+      "choices": [
+        "جاك ويلشير",
+        "لويس سواريز",
+        "ميسي"
+      ]
+    },
+    {
+      "id": "set2-games-normal-2",
+      "category": "ألعاب",
+      "type": "normal",
+      "question": "من هي الشخصيات المتواجدة على غلاف لعبة Jump Force ؟",
+      "answer": "لوفي - غوكو - ناروتو"
+    },
+    {
+      "id": "set2-games-double",
+      "category": "ألعاب",
+      "type": "double",
+      "parts": [
+        {
+          "question": "ما هي اسم العملات الذهبية في لعبة فورتنايت ؟",
+          "answer": "V-Bucks"
+        },
+        {
+          "question": "ما هو اسم بطل لعبة Uncharted ؟",
+          "answer": "ناثان دريك"
+        }
+      ]
+    },
+    {
+      "id": "set2-games-hard",
+      "category": "ألعاب",
+      "type": "hard",
+      "question": "في اي عام صدرت لعبة القطارات الشهيرة Subway Surfers ؟",
+      "answer": "2012"
+    },
+    {
+      "id": "set2-games-dual",
+      "category": "ألعاب",
+      "type": "dual",
+      "question": "ما اسم تعويذة مالينيا الشهيرة التي تطلق سلسلة هجمات سريعة؟",
+      "answer": "رقصة الطيور المائية",
+      "choices": [
+        "رقصة الطيور المائية",
+        "السيوف الراقصة",
+        "بتلات الورد القرمزية"
+      ]
     }
   ],
   "rapid": [
@@ -368,6 +609,36 @@
       "id": "rapid-custom-12",
       "question": "ما اسم معلم شيكامارو؟",
       "answer": "أسوما"
+    },
+    {
+      "id": "rapid-new-13",
+      "question": "من هو قائد فريق النسور الفضية ( بلاك كلوفر )؟",
+      "answer": "نوزيل سيلفا"
+    },
+    {
+      "id": "rapid-new-14",
+      "question": "ما هو اسم الجزيرة التي ظهر فيها العمالقة دوري وبروغي؟",
+      "answer": "ليتل غاردن"
+    },
+    {
+      "id": "rapid-new-15",
+      "question": "من هو المستخدم السابع لـ ون فور اول ؟",
+      "answer": "نانا شيمورا"
+    },
+    {
+      "id": "rapid-new-16",
+      "question": "من هو قائد الفرقة العاشرة في بليتش؟",
+      "answer": "توشيرو هيتسوغايا"
+    },
+    {
+      "id": "rapid-new-17",
+      "question": "كم كان رقم هيسوكا في اختبار الصيادين",
+      "answer": "44"
+    },
+    {
+      "id": "rapid-new-18",
+      "question": "ما هو اسم وحش غارا ؟",
+      "answer": "شيكاكو"
     }
   ]
 }
